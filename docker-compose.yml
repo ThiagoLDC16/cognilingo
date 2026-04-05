@@ -1,0 +1,29 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cognilingo-api
+    depends_on:
+      - postgres
+    ports:
+      - "5172:5172"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Docker
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16
+    container_name: cognilingo-postgres
+    environment:
+      POSTGRES_DB: cognilingo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: coglearn2026
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
