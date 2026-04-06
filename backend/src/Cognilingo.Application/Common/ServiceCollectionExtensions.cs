@@ -12,5 +12,7 @@ public static partial class ServiceCollectionExtensions
         services.AddValidatorsFromAssembly(assembly);
 
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+        return services;
     }
 }

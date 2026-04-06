@@ -20,13 +20,13 @@ public sealed class LoginCommandHandler(
     public async Task<Response<LoginResult>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var user = await context.Users
-            .FirstOrDefaultAsync(u => u.Email == request.email, cancellationToken);
+            .FirstOrDefaultAsync(u => u.Email == request.Email, cancellationToken);
 
         if (user is null)
             return new UnauthorizedResponse<LoginResult>(IdentityMessages.UserNotFound);
 
         var isPasswordMatch = passwordHasher.Verify(
-            plainText: request.password,
+            plainText: request.Password,
             hash: user.PasswordHash
         );
 

@@ -21,15 +21,15 @@ public sealed class RegisterCommandHandler(
     public async Task<Response<RegisterResult>> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
         var hasUser = await context.Users
-            .AnyAsync(u => u.Email == request.email, cancellationToken);
+            .AnyAsync(u => u.Email == request.Email, cancellationToken);
 
         if (hasUser)
             return new UnprocessableResponse<RegisterResult>(IdentityMessages.EmailAlreadyUsed);
 
         var user = new User(
-            name: request.name,
-            email: request.email,
-            passwordHash: passwordHasher.Hash(request.password)
+            name: request.Name,
+            email: request.Email,
+            passwordHash: passwordHasher.Hash(request.Password)
         );
 
         await context.Users.AddAsync(user, cancellationToken);
