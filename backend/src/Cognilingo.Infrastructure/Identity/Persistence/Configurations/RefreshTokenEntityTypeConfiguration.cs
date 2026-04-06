@@ -14,15 +14,18 @@ public sealed class RefreshTokenEntityTypeConfiguration : IEntityTypeConfigurati
         builder.ConfigureCommonEntities();
 
         builder
-            .Property(rt => rt.UserId)
-            .IsRequired();
-
-        builder
             .Property(rt => rt.Token)
             .IsRequired();
 
         builder
-            .HasOne<User>()
+            .Property(rt => rt.UserId)
+            .IsRequired();
+
+        builder.HasIndex(rt => rt.Token)
+            .IsUnique();
+
+        builder
+            .HasOne(rt => rt.User)
             .WithMany()
             .HasForeignKey(rt => rt.UserId)
             .OnDelete(DeleteBehavior.Cascade);

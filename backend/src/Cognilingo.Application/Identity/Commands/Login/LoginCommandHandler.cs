@@ -4,6 +4,7 @@ using Cognilingo.Application.Common.Responses.Base;
 using Cognilingo.Application.Identity.Authentication;
 using Cognilingo.Application.Identity.Interfaces;
 using Cognilingo.Application.Identity.Messages;
+using Cognilingo.Application.Identity.Results;
 using Cognilingo.Domain.Identity.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -15,15 +16,15 @@ public sealed class LoginCommandHandler(
     IPasswordHasher passwordHasher,
     ITokenService tokenService,
     AuthService authService
-) : IRequestHandler<LoginCommand, Response<LoginResult>>
+) : IRequestHandler<LoginCommand, Response<AuthResult>>
 {
-    public async Task<Response<LoginResult>> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<Response<AuthResult>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var user = await context.Users
             .FirstOrDefaultAsync(u => u.Email == request.Email, cancellationToken);
 
         if (user is null)
-            return new UnauthorizedResponse<LoginResult>(IdentityMessages.UserNotFound);
+            return new UnauthorizedResponse<AuthResult>(IdentityMessages.UserNotFound);
 
         var isPasswordMatch = passwordHasher.Verify(
             plainText: request.Password,
@@ -31,7 +32,7 @@ public sealed class LoginCommandHandler(
         );
 
         if (!isPasswordMatch)
-            return new UnauthorizedResponse<LoginResult>(IdentityMessages.WrongPassword);
+            return new UnauthorizedResponse<AuthResult>(IdentityMessages.WrongPassword);
 
         var claims = authService.CreateUserTokenClaims(user);
 
@@ -46,8 +47,8 @@ public sealed class LoginCommandHandler(
 
         await context.SaveChangesAsync(cancellationToken);
 
-        return new OkResponse<LoginResult>(
-            data: new LoginResult(
+        return new OkResponse<AuthResult>(
+            data: new AuthResult(
                 accessToken: accessToken,
                 refreshToken: refreshToken.Token
             )

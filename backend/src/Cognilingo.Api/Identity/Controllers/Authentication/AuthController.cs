@@ -1,5 +1,6 @@
 using Cognilingo.Api.Common.Controllers;
 using Cognilingo.Application.Identity.Commands.Login;
+using Cognilingo.Application.Identity.Commands.RefreshTokens;
 using Cognilingo.Application.Identity.Commands.Register;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -17,8 +18,7 @@ public class AuthController(IMediator _mediator) : BaseController
     public async Task<IActionResult> Register(RegisterCommand command)
         => MapResponse(await _mediator.Send(command));
 
-    // TODO
-    // [HttpPost("refresh")]
-    // public async Task<IActionResult> Refresh(RefreshTokenCommand command)
-    //     => Ok(await _mediator.Send(command));
+    [HttpPost("refresh")]
+    public async Task<IActionResult> Refresh(RefreshTokenCommand command)
+        => MapResponse(await _mediator.Send(command));
 }

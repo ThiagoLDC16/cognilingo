@@ -5,4 +5,6 @@ public static class IdentityMessages
     public const string EmailAlreadyUsed = "emailAlreadyUsed";
     public const string UserNotFound = "userNotFound";
     public const string WrongPassword = "wrongPassword";
+    public const string InvalidRefreshToken = "invalidRefreshToken";
+    public const string ExpiredRefreshToken = "expiredRefreshToken";
 }

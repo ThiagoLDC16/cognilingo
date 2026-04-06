@@ -1,10 +1,10 @@
-using System.Security.Claims;
 using Cognilingo.Application.Common.Interfaces.Persistence;
 using Cognilingo.Application.Common.Responses;
 using Cognilingo.Application.Common.Responses.Base;
 using Cognilingo.Application.Identity.Authentication;
 using Cognilingo.Application.Identity.Interfaces;
 using Cognilingo.Application.Identity.Messages;
+using Cognilingo.Application.Identity.Results;
 using Cognilingo.Domain.Identity.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -16,15 +16,15 @@ public sealed class RegisterCommandHandler(
     IPasswordHasher passwordHasher,
     ITokenService tokenService,
     AuthService authService
-) : IRequestHandler<RegisterCommand, Response<RegisterResult>>
+) : IRequestHandler<RegisterCommand, Response<AuthResult>>
 {
-    public async Task<Response<RegisterResult>> Handle(RegisterCommand request, CancellationToken cancellationToken)
+    public async Task<Response<AuthResult>> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
         var hasUser = await context.Users
             .AnyAsync(u => u.Email == request.Email, cancellationToken);
 
         if (hasUser)
-            return new UnprocessableResponse<RegisterResult>(IdentityMessages.EmailAlreadyUsed);
+            return new UnprocessableResponse<AuthResult>(IdentityMessages.EmailAlreadyUsed);
 
         var user = new User(
             name: request.Name,
@@ -33,7 +33,7 @@ public sealed class RegisterCommandHandler(
         );
 
         await context.Users.AddAsync(user, cancellationToken);
-        
+
         var claims = authService.CreateUserTokenClaims(user);
 
         var accessToken = tokenService.GenerateAccessToken(claims);
@@ -47,8 +47,8 @@ public sealed class RegisterCommandHandler(
 
         await context.SaveChangesAsync(cancellationToken);
 
-        return new OkResponse<RegisterResult>(
-            data: new RegisterResult(
+        return new OkResponse<AuthResult>(
+            data: new AuthResult(
                 accessToken: accessToken,
                 refreshToken: refreshToken.Token
             )

@@ -1,4 +1,5 @@
 using Cognilingo.Application.Common.Responses.Base;
+using Cognilingo.Application.Identity.Results;
 using FluentValidation;
 using MediatR;
 
@@ -7,7 +8,7 @@ namespace Cognilingo.Application.Identity.Commands.Login;
 public sealed record LoginCommand(
     string Email,
     string Password
-) : IRequest<Response<LoginResult>>;
+) : IRequest<Response<AuthResult>>;
 
 public sealed class LoginCommandValidator : AbstractValidator<LoginCommand>
 {
