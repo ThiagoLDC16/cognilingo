@@ -1,7 +1,3 @@
-using Cognilingo.Api;
-using Cognilingo.Application;
-using Cognilingo.Infrastructure;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddJwtBearerAuthentication(builder.Configuration);

@@ -6,9 +6,8 @@ using Cognilingo.Infrastructure.Identity.Persistence;
 using Cognilingo.Infrastructure.Common.Persistence.Interceptors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace Cognilingo.Infrastructure;
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {

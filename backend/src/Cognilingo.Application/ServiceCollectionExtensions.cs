@@ -1,18 +1,26 @@
 using System.Reflection;
 using Cognilingo.Application.Identity.Authentication;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace Cognilingo.Application;
+namespace Microsoft.Extensions.DependencyInjection;
 
-public static class ServiceCollectionExtensions
+public static partial class ServiceCollectionExtensions
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddMediatR(cfg =>
-            cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+        var assembly = Assembly.GetExecutingAssembly();
 
-        services.AddScoped<AuthService>();
+        services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(assembly));
+
+        services.AddValidation(assembly);
+
+        AddIdentity(services);
 
         return services;
+    }
+
+    private static void AddIdentity(IServiceCollection services)
+    {
+        services.AddScoped<AuthService>();
     }
 }
