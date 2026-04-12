@@ -19,4 +19,8 @@ export const authApi = {
     const response = await apiClient.get<LoggedUserResponse>('/api/auth/logged-user');
     return response.data;
   },
+  async refreshTokens(payload: { refreshToken: string }) {
+    const response = await apiClient.post<AuthTokensResponse>('/api/auth/refresh', payload);
+    return response.data;
+  },
 };
