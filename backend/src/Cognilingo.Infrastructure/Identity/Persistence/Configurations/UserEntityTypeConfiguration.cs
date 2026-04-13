@@ -20,7 +20,7 @@ public sealed class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
             .IsRequired();
 
         builder.HasMany(u => u.RefreshTokens)
-            .WithOne()
+            .WithOne(rt => rt.User)
             .HasForeignKey(rt => rt.UserId)
             .OnDelete(DeleteBehavior.Cascade);
     }

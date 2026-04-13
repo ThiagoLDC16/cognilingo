@@ -46,6 +46,9 @@ namespace Cognilingo.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Token")
+                        .IsUnique();
+
                     b.HasIndex("UserId");
 
                     b.ToTable("refresh_tokens", (string)null);
@@ -82,11 +85,13 @@ namespace Cognilingo.Infrastructure.Migrations
 
             modelBuilder.Entity("Cognilingo.Domain.Identity.Entities.RefreshToken", b =>
                 {
-                    b.HasOne("Cognilingo.Domain.Identity.Entities.User", null)
+                    b.HasOne("Cognilingo.Domain.Identity.Entities.User", "User")
                         .WithMany("RefreshTokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Cognilingo.Domain.Identity.Entities.User", b =>

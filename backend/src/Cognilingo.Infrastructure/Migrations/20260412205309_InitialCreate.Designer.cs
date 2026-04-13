@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cognilingo.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260405194207_InitialCreate")]
+    [Migration("20260412205309_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -48,6 +48,9 @@ namespace Cognilingo.Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Token")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -85,11 +88,13 @@ namespace Cognilingo.Infrastructure.Migrations
 
             modelBuilder.Entity("Cognilingo.Domain.Identity.Entities.RefreshToken", b =>
                 {
-                    b.HasOne("Cognilingo.Domain.Identity.Entities.User", null)
+                    b.HasOne("Cognilingo.Domain.Identity.Entities.User", "User")
                         .WithMany("RefreshTokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Cognilingo.Domain.Identity.Entities.User", b =>

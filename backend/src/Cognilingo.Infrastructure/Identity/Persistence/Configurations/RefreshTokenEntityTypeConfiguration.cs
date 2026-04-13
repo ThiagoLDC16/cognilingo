@@ -26,7 +26,7 @@ public sealed class RefreshTokenEntityTypeConfiguration : IEntityTypeConfigurati
 
         builder
             .HasOne(rt => rt.User)
-            .WithMany()
+            .WithMany(u => u.RefreshTokens)
             .HasForeignKey(rt => rt.UserId)
             .OnDelete(DeleteBehavior.Cascade);
     }

@@ -50,6 +50,12 @@ namespace Cognilingo.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_refresh_tokens_Token",
+                table: "refresh_tokens",
+                column: "Token",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_refresh_tokens_UserId",
                 table: "refresh_tokens",
                 column: "UserId");
