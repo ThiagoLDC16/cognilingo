@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Cognilingo.Application\Cognilingo.Application.csproj" />
     <ProjectReference Include="..\Cognilingo.Domain\Cognilingo.Domain.csproj" />
   </ItemGroup>

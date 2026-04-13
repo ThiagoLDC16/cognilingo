@@ -1,9 +1,11 @@
 using Cognilingo.Application.Common.Interfaces.Persistence;
 using Cognilingo.Application.Identity.Interfaces;
+using Cognilingo.Application.Identity.Interfaces.Context;
 using Cognilingo.Infrastructure.Identity.Authentication;
 using Cognilingo.Infrastructure.Identity.Authentication.Hashers;
 using Cognilingo.Infrastructure.Identity.Persistence;
 using Cognilingo.Infrastructure.Common.Persistence.Interceptors;
+using Cognilingo.Infrastructure.Identity.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -45,6 +47,9 @@ public static class ServiceCollectionExtensions
         IServiceCollection services
     )
     {
+        services.AddHttpContextAccessor();
+        services.AddScoped<IRequestContext, RequestContext>();
+        
         services.AddScoped<ITokenService, JwtTokenService>();
         services.AddScoped<IPasswordHasher, MD5PasswordHasher>();
     }
