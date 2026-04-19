@@ -1,6 +1,3 @@
-using System.Reflection;
-using Cognilingo.Application.Identity.Authentication;
-
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static partial class ServiceCollectionExtensions

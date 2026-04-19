@@ -1,7 +1,3 @@
-using Cognilingo.Application.Common.Interfaces.Persistence;
-using Cognilingo.Domain.Identity.Entities;
-using Microsoft.EntityFrameworkCore;
-
 namespace Cognilingo.Infrastructure.Identity.Persistence;
 
 public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options), IAppDbContext

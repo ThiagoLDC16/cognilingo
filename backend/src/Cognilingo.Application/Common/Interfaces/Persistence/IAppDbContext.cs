@@ -1,6 +1,3 @@
-using Cognilingo.Domain.Identity.Entities;
-using Microsoft.EntityFrameworkCore;
-
 namespace Cognilingo.Application.Common.Interfaces.Persistence;
 
 public interface IAppDbContext

@@ -1,7 +1,3 @@
-using Cognilingo.Application.Common.Responses;
-using FluentValidation;
-using MediatR;
-
 namespace Cognilingo.Application.Common.Behaviors;
 
 public sealed class ValidationBehavior<TRequest, TResponse>(IValidator<TRequest>? validator = null)

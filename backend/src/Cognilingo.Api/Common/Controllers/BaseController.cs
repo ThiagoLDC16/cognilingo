@@ -1,4 +1,3 @@
-using Cognilingo.Application.Common.Responses;
 using Cognilingo.Application.Common.Responses.Base;
 using Microsoft.AspNetCore.Mvc;
 

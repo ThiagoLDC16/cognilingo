@@ -1,6 +1,3 @@
-using System.Security.Claims;
-using Cognilingo.Domain.Identity.Entities;
-
 namespace Cognilingo.Application.Identity.Authentication;
 
 public class AuthService

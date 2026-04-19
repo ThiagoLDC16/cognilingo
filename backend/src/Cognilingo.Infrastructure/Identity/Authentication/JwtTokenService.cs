@@ -1,10 +1,3 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using Cognilingo.Application.Identity.Interfaces;
-using Cognilingo.Infrastructure.Identity.Options;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Cognilingo.Infrastructure.Identity.Authentication;

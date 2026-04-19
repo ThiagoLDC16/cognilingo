@@ -1,6 +1,4 @@
-using System.Security.Claims;
 using Cognilingo.Application.Identity.Authentication;
-using Cognilingo.Application.Identity.Interfaces.Context;
 using Microsoft.AspNetCore.Http;
 
 namespace Cognilingo.Infrastructure.Identity.Context;

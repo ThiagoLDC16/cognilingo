@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
-
 namespace Cognilingo.Infrastructure.Common.Persistence.ValueGenerators;
 
 public sealed class GuidV7Generator : ValueGenerator<Guid>

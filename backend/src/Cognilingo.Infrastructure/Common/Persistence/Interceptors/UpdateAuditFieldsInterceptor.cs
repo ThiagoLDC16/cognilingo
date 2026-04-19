@@ -1,7 +1,3 @@
-using Cognilingo.Domain.Common.Base;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-
 namespace Cognilingo.Infrastructure.Common.Persistence.Interceptors;
 
 public sealed class UpdateAuditFieldsInterceptor : SaveChangesInterceptor

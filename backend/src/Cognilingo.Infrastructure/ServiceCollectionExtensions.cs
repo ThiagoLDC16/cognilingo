@@ -1,12 +1,8 @@
-using Cognilingo.Application.Common.Interfaces.Persistence;
-using Cognilingo.Application.Identity.Interfaces;
-using Cognilingo.Application.Identity.Interfaces.Context;
 using Cognilingo.Infrastructure.Identity.Authentication;
 using Cognilingo.Infrastructure.Identity.Authentication.Hashers;
 using Cognilingo.Infrastructure.Identity.Persistence;
 using Cognilingo.Infrastructure.Common.Persistence.Interceptors;
 using Cognilingo.Infrastructure.Identity.Context;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection;

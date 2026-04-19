@@ -1,8 +1,3 @@
-using Cognilingo.Domain.Simulations.Entities;
-using Cognilingo.Infrastructure.Common.Persistence.Extensions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 namespace Cognilingo.Infrastructure.Simulations.Persistence.Configurations;
 
 public sealed class CategoryEntityTypeConfiguration : IEntityTypeConfiguration<Category>

@@ -1,11 +1,3 @@
-using Cognilingo.Application.Common.Interfaces.Persistence;
-using Cognilingo.Application.Common.Responses;
-using Cognilingo.Application.Common.Responses.Base;
-using Cognilingo.Application.Identity.Interfaces.Context;
-using Cognilingo.Application.Identity.Messages;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-
 namespace Cognilingo.Application.Identity.Queries.GetLoggedUser;
 
 public sealed class GetLoggedUserQueryHandler(

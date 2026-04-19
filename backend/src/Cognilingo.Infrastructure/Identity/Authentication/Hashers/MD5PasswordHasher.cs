@@ -1,7 +1,3 @@
-using System.Security.Cryptography;
-using System.Text;
-using Cognilingo.Application.Identity.Interfaces;
-
 namespace Cognilingo.Infrastructure.Identity.Authentication.Hashers;
 
 public sealed class MD5PasswordHasher : IPasswordHasher

@@ -1,13 +1,3 @@
-using Cognilingo.Application.Common.Interfaces.Persistence;
-using Cognilingo.Application.Common.Responses;
-using Cognilingo.Application.Common.Responses.Base;
-using Cognilingo.Application.Identity.Authentication;
-using Cognilingo.Application.Identity.Interfaces;
-using Cognilingo.Application.Identity.Messages;
-using Cognilingo.Application.Identity.Results;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-
 namespace Cognilingo.Application.Identity.Commands.RefreshTokens;
 
 public sealed class RefreshTokenCommandHandler(

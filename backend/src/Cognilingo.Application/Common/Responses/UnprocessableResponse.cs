@@ -1,6 +1,3 @@
-using Cognilingo.Application.Common.Responses.Base;
-using FluentValidation.Results;
-
 namespace Cognilingo.Application.Common.Responses;
 
 public sealed record UnprocessableResponse<T> : Response<T>

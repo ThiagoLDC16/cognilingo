@@ -1,9 +1,3 @@
-using Cognilingo.Domain.Common.Base;
-using Cognilingo.Domain.Common.Interfaces;
-using Cognilingo.Infrastructure.Common.Persistence.ValueGenerators;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 namespace Cognilingo.Infrastructure.Common.Persistence.Extensions;
 
 public static class EntityTypeBuilderExtensions

@@ -1,5 +1,3 @@
-using Cognilingo.Application.Common.Responses.Base;
-
 namespace Cognilingo.Application.Common.Responses;
 
 public sealed record OkResponse<T> : Response<T>

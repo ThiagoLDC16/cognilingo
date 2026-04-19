@@ -1,8 +1,3 @@
-using Cognilingo.Application.Common.Responses.Base;
-using Cognilingo.Application.Identity.Results;
-using FluentValidation;
-using MediatR;
-
 namespace Cognilingo.Application.Identity.Commands.Register;
 
 public sealed record RegisterCommand(

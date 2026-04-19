@@ -1,8 +1,3 @@
-using Cognilingo.Domain.Identity.Entities;
-using Cognilingo.Infrastructure.Common.Persistence.Extensions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 namespace Cognilingo.Infrastructure.Identity.Persistence.Configurations;
 
 public sealed class RefreshTokenEntityTypeConfiguration : IEntityTypeConfiguration<RefreshToken>

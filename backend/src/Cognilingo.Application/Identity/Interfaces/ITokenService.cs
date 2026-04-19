@@ -1,5 +1,3 @@
-using System.Security.Claims;
-
 namespace Cognilingo.Application.Identity.Interfaces;
 
 public interface ITokenService
