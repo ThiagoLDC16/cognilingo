@@ -1,4 +1,4 @@
-using Cognilingo.Domain.Common;
+using Cognilingo.Domain.Common.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 

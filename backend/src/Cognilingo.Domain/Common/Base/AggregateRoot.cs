@@ -1,6 +1,4 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Cognilingo.Domain.Common;
+namespace Cognilingo.Domain.Common.Base;
 
 public abstract class AggregateRoot : BaseEntity
 {

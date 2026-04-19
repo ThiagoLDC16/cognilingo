@@ -1,4 +1,4 @@
-namespace Cognilingo.Domain.Common;
+namespace Cognilingo.Domain.Common.Base;
 
 public abstract class BaseEntity
 {

@@ -1,5 +1,3 @@
-using Cognilingo.Domain.Common;
-
 namespace Cognilingo.Domain.Identity.Entities;
 
 public sealed class RefreshToken : BaseEntity

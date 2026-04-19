@@ -1,5 +1,7 @@
-using Cognilingo.Domain.Common;
+using Cognilingo.Domain.Common.Base;
+using Cognilingo.Domain.Common.Interfaces;
 using Cognilingo.Infrastructure.Common.Persistence.ValueGenerators;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cognilingo.Infrastructure.Common.Persistence.Extensions;
@@ -11,6 +13,9 @@ public static class EntityTypeBuilderExtensions
     ) where TEntity : class
     {
         TryConfigureBaseEntity(builder);
+
+        TryConfigureTranslationBase(builder);
+        TryConfigureTranslations(builder);
         return builder;
     }
 
@@ -33,5 +38,39 @@ public static class EntityTypeBuilderExtensions
         builder
             .Property(nameof(BaseEntity.UpdatedAt))
             .IsRequired(false);
+    }
+
+    private static void TryConfigureTranslationBase(
+        EntityTypeBuilder builder
+    )
+    {
+        if (!builder.Metadata.ClrType.IsAssignableTo(typeof(TranslationBase)))
+            return;
+
+        builder.HasKey(nameof(TranslationBase.EntityId), nameof(TranslationBase.Language));
+
+        builder.Property(nameof(TranslationBase.Language))
+            .IsRequired()
+            .HasMaxLength(10);
+    }
+
+
+    private static void TryConfigureTranslations(
+        EntityTypeBuilder builder
+    )
+    {
+        var translationType = builder.Metadata.ClrType
+            .GetInterfaces()
+            .FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ITranslatable<>))
+            ?.GetGenericArguments()[0];
+
+        if (translationType is null)
+            return;
+
+        builder
+            .HasMany(translationType, nameof(ITranslatable<TranslationBase>.Translations))
+            .WithOne()
+            .HasForeignKey(nameof(TranslationBase.EntityId))
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
