@@ -3,22 +3,29 @@ namespace Cognilingo.Application.Identity.Queries.GetLoggedUser;
 public sealed class GetLoggedUserQueryHandler(
     IAppDbContext context,
     IRequestContext requestContext
-) : IRequestHandler<GetLoggedUserQuery, Response<LoggedUserResult>>
+) : IRequestHandler<GetLoggedUserQuery, Response<GetLoggedUserDto>>
 {
-    public async Task<Response<LoggedUserResult>> Handle(GetLoggedUserQuery request, CancellationToken cancellationToken)
+    public async Task<Response<GetLoggedUserDto>> Handle(
+        GetLoggedUserQuery request,
+        CancellationToken cancellationToken
+    )
     {
         if (requestContext.UserId is null)
-            return new UnauthorizedResponse<LoggedUserResult>(IdentityMessages.UserNotFound);
+            return new UnauthorizedResponse<GetLoggedUserDto>(IdentityMessages.UserNotFound);
 
         var user = await context.Users
             .AsNoTracking()
+            .Select(u => new GetLoggedUserDto
+            {
+                Id = u.Id,
+                Name = u.Name,
+                Email = u.Email
+            })
             .FirstOrDefaultAsync(u => u.Id == requestContext.UserId, cancellationToken);
 
         if (user is null)
-            return new UnauthorizedResponse<LoggedUserResult>(IdentityMessages.UserNotFound);
+            return new UnauthorizedResponse<GetLoggedUserDto>(IdentityMessages.UserNotFound);
 
-        return new OkResponse<LoggedUserResult>(
-            new LoggedUserResult(user.Id, user.Name, user.Email)
-        );
+        return new OkResponse<GetLoggedUserDto>(user);
     }
 }
