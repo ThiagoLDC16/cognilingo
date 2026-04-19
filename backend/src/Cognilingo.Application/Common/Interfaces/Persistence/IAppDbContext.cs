@@ -4,6 +4,9 @@ public interface IAppDbContext
 {
     DbSet<User> Users { get; }
     DbSet<RefreshToken> RefreshTokens { get; }
+    DbSet<Category> Categories { get; }
+    DbSet<Situation> Situations { get; }
+    DbSet<SituationVariant> SituationVariants { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

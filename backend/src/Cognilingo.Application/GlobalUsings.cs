@@ -12,6 +12,7 @@ global using Cognilingo.Application.Identity.Interfaces.Context;
 global using Cognilingo.Application.Identity.Messages;
 global using Cognilingo.Application.Identity.Results;
 global using Cognilingo.Domain.Identity.Entities;
+global using Cognilingo.Domain.Simulations.Entities;
 global using FluentValidation;
 global using FluentValidation.Results;
 global using MediatR;

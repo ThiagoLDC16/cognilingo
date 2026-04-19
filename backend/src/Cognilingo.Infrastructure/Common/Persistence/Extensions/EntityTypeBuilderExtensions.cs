@@ -41,9 +41,9 @@ public static class EntityTypeBuilderExtensions
         if (!builder.Metadata.ClrType.IsAssignableTo(typeof(TranslationBase)))
             return;
 
-        builder.HasKey(nameof(TranslationBase.EntityId), nameof(TranslationBase.Language));
+        builder.HasKey(nameof(TranslationBase.EntityId), nameof(TranslationBase.LanguageCode));
 
-        builder.Property(nameof(TranslationBase.Language))
+        builder.Property(nameof(TranslationBase.LanguageCode))
             .IsRequired()
             .HasMaxLength(10);
     }

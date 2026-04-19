@@ -1,0 +1,5 @@
+@baseUrl = http://localhost:5172
+
+### Get Categories
+GET {{baseUrl}}/api/simulations/categories?languageCode=pt-BR
+Content-Type: application/json
