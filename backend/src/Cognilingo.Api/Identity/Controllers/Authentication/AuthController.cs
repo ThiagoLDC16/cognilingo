@@ -1,12 +1,3 @@
-using Cognilingo.Api.Common.Controllers;
-using Cognilingo.Application.Identity.Commands.Login;
-using Cognilingo.Application.Identity.Commands.RefreshTokens;
-using Cognilingo.Application.Identity.Commands.Register;
-using Cognilingo.Application.Identity.Queries.GetLoggedUser;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Cognilingo.Api.Identity.Controllers.Authentication;
 
 [Route("api/auth")]

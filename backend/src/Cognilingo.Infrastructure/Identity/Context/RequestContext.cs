@@ -1,6 +1,3 @@
-using Cognilingo.Application.Identity.Authentication;
-using Microsoft.AspNetCore.Http;
-
 namespace Cognilingo.Infrastructure.Identity.Context;
 
 public class RequestContext(IHttpContextAccessor httpContextAccessor) : IRequestContext

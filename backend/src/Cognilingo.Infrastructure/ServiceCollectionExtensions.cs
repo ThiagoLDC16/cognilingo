@@ -1,10 +1,3 @@
-using Cognilingo.Infrastructure.Identity.Authentication;
-using Cognilingo.Infrastructure.Identity.Authentication.Hashers;
-using Cognilingo.Infrastructure.Identity.Persistence;
-using Cognilingo.Infrastructure.Common.Persistence.Interceptors;
-using Cognilingo.Infrastructure.Identity.Context;
-using Microsoft.Extensions.Configuration;
-
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
@@ -38,14 +31,14 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
     }
-    
+
     private static void AddIdentityInfrastructure(
         IServiceCollection services
     )
     {
         services.AddHttpContextAccessor();
         services.AddScoped<IRequestContext, RequestContext>();
-        
+
         services.AddScoped<ITokenService, JwtTokenService>();
         services.AddScoped<IPasswordHasher, MD5PasswordHasher>();
     }

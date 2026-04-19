@@ -1,6 +1,3 @@
-using Cognilingo.Application.Common.Responses.Base;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Cognilingo.Api.Common.Controllers;
 
 [ApiController]

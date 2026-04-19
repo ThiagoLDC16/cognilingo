@@ -1,5 +1,3 @@
-using Microsoft.IdentityModel.Tokens;
-
 namespace Cognilingo.Infrastructure.Identity.Authentication;
 
 public sealed class JwtTokenService(

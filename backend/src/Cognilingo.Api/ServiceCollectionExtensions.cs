@@ -1,8 +1,3 @@
-using System.Text;
-using Cognilingo.Infrastructure.Identity.Options;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
