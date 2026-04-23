@@ -11,6 +11,7 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Situation> Situations => Set<Situation>();
     public DbSet<SituationVariant> SituationVariants => Set<SituationVariant>();
+    public DbSet<SituationVariantObjective> SituationVariantObjectives => Set<SituationVariantObjective>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
