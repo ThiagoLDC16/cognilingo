@@ -11,6 +11,7 @@ global using Cognilingo.Application.Identity.Interfaces;
 global using Cognilingo.Application.Identity.Interfaces.Context;
 global using Cognilingo.Application.Identity.Messages;
 global using Cognilingo.Application.Identity.Results;
+global using Cognilingo.Application.Simulations.Messages;
 global using Cognilingo.Domain.Identity.Entities;
 global using Cognilingo.Domain.Simulations.Entities;
 global using FluentValidation;

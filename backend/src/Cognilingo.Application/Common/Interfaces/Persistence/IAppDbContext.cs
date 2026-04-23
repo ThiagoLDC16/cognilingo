@@ -7,6 +7,7 @@ public interface IAppDbContext
     DbSet<Category> Categories { get; }
     DbSet<Situation> Situations { get; }
     DbSet<SituationVariant> SituationVariants { get; }
+    DbSet<Simulation> Simulations { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

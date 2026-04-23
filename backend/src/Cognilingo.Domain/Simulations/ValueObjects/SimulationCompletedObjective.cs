@@ -2,7 +2,7 @@ namespace Cognilingo.Domain.Simulations.ValueObjects;
 
 public sealed record SimulationCompletedObjective
 {
-    public Guid SimulationId { get; private set; }
-    public Guid ObjectiveId { get; private set; }
-    public DateTime? CompletedAt { get; private set; }
+    public required Guid SimulationId { get; init; }
+    public required Guid ObjectiveId { get; init; }
+    public required DateTime? CompletedAt { get; init; }
 }

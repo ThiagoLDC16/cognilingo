@@ -5,6 +5,7 @@ public sealed class SituationVariant : BaseEntity, ITranslatable<SituationVarian
     public Guid SituationId { get; private set; }
     public string LearningLanguage { get; private set; }
     public string PromptInstructions { get; private set; }
+    public string InitialMessage { get; private set; }
 
     private readonly List<SituationVariantTranslation> _translations = new();
     public IReadOnlyCollection<SituationVariantTranslation> Translations => _translations;

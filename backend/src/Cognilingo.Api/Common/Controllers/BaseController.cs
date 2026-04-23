@@ -16,4 +16,15 @@ public class BaseController : ControllerBase
 
         return StatusCode((int)response.Status);
     }
+
+    protected IActionResult MapResponse(Response response)
+    {
+        if (response.Messages.Any())
+            return StatusCode((int)response.Status, new
+            {
+                errors = response.Messages
+            });
+
+        return StatusCode((int)response.Status);
+    }
 }
