@@ -13,6 +13,6 @@ public sealed record FeedbackRequest(
 
 public sealed record FeedbackResponse(
     MessageFeedbackClassification Classification,
-    string Explanation,
-    string Correction
+    string? Explanation,
+    string? Correction
 );

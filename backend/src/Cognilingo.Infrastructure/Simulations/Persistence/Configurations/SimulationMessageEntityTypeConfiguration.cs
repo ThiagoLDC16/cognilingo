@@ -19,18 +19,14 @@ public sealed class SimulationMessageEntityTypeConfiguration : IEntityTypeConfig
 
         builder.OwnsOne(sm => sm.Feedback, f =>
         {
-            f.ToTable("simulation_message_feedbacks");
-
-            f.WithOwner().HasForeignKey("SimulationMessageId");
-
             f.Property(fb => fb.Classification)
                 .IsRequired();
             
             f.Property(fb => fb.Explanation)
-                .IsRequired();
+                .IsRequired(false);
             
             f.Property(fb => fb.Correction)
-                .IsRequired();
+                .IsRequired(false);
         });
 
         builder.HasOne<Simulation>()
