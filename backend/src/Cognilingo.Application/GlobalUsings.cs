@@ -14,6 +14,7 @@ global using Cognilingo.Application.Identity.Dtos;
 global using Cognilingo.Application.Simulations.Abstractions.AI.ChatCompletion;
 global using Cognilingo.Application.Simulations.Abstractions.AI.Dtos;
 global using Cognilingo.Application.Simulations.Abstractions.AI.MessageFeedback;
+global using Cognilingo.Application.Simulations.Dtos;
 global using Cognilingo.Application.Simulations.Messages;
 global using Cognilingo.Domain.Identity.Entities;
 global using Cognilingo.Domain.Simulations.Entities;

@@ -5,9 +5,9 @@ public sealed class SendMessageCommandHandler(
     IRequestContext requestContext,
     IChatCompletionService chatCompletionService,
     IMessageFeedbackService messageFeedbackService
-) : IRequestHandler<SendMessageCommand, Response>
+) : IRequestHandler<SendMessageCommand, Response<List<SimulationMessageDto>>>
 {
-    public async Task<Response> Handle(SendMessageCommand request, CancellationToken cancellationToken)
+    public async Task<Response<List<SimulationMessageDto>>> Handle(SendMessageCommand request, CancellationToken cancellationToken)
     {
         var simulation = await context.Simulations
             .Include(s => s.Messages)
@@ -18,7 +18,7 @@ public sealed class SendMessageCommandHandler(
             );
 
         if (simulation is null)
-            return new NotFoundResponse(SimulationMessages.SimulationNotFound);
+            return new NotFoundResponse<List<SimulationMessageDto>>(SimulationMessages.SimulationNotFound);
 
         var history = simulation.Messages
             .Select(m => new Message(m.Sender, m.Content))
@@ -57,10 +57,16 @@ public sealed class SendMessageCommandHandler(
             )
         );
 
-        simulation.AddAssistantMessage(chatResponse.AssistantResponse);
+        var assistantMessage = simulation.AddAssistantMessage(chatResponse.AssistantResponse);
 
         await context.SaveChangesAsync(cancellationToken);
 
-        return new NoContentResponse();
+        var result = new List<SimulationMessageDto>
+        {
+            SimulationMessageDto.FromDomain(userMessage),
+            SimulationMessageDto.FromDomain(assistantMessage)
+        };
+
+        return new OkResponse<List<SimulationMessageDto>>(result);
     }
 }
