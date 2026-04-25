@@ -2,7 +2,7 @@ namespace Cognilingo.Application.Identity.Commands.RefreshTokens;
 
 public sealed record RefreshTokenCommand(
     string RefreshToken
-) : IRequest<Response<AuthResult>>;
+) : IRequest<Response<AuthDto>>;
 
 public sealed class RefreshTokenCommandValidator : AbstractValidator<RefreshTokenCommand>
 {

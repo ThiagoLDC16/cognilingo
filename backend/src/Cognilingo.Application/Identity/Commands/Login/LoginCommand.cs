@@ -3,7 +3,7 @@ namespace Cognilingo.Application.Identity.Commands.Login;
 public sealed record LoginCommand(
     string Email,
     string Password
-) : IRequest<Response<AuthResult>>;
+) : IRequest<Response<AuthDto>>;
 
 public sealed class LoginCommandValidator : AbstractValidator<LoginCommand>
 {

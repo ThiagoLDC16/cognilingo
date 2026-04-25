@@ -5,15 +5,15 @@ public sealed class LoginCommandHandler(
     IPasswordHasher passwordHasher,
     ITokenService tokenService,
     AuthService authService
-) : IRequestHandler<LoginCommand, Response<AuthResult>>
+) : IRequestHandler<LoginCommand, Response<AuthDto>>
 {
-    public async Task<Response<AuthResult>> Handle(LoginCommand request, CancellationToken cancellationToken)
+    public async Task<Response<AuthDto>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var user = await context.Users
             .FirstOrDefaultAsync(u => u.Email == request.Email, cancellationToken);
 
         if (user is null)
-            return new UnauthorizedResponse<AuthResult>(IdentityMessages.UserNotFound);
+            return new UnauthorizedResponse<AuthDto>(IdentityMessages.UserNotFound);
 
         var isPasswordMatch = passwordHasher.Verify(
             plainText: request.Password,
@@ -21,7 +21,7 @@ public sealed class LoginCommandHandler(
         );
 
         if (!isPasswordMatch)
-            return new UnauthorizedResponse<AuthResult>(IdentityMessages.WrongPassword);
+            return new UnauthorizedResponse<AuthDto>(IdentityMessages.WrongPassword);
 
         var claims = authService.CreateUserTokenClaims(user);
 
@@ -36,10 +36,10 @@ public sealed class LoginCommandHandler(
 
         await context.SaveChangesAsync(cancellationToken);
 
-        return new OkResponse<AuthResult>(
-            data: new AuthResult(
-                accessToken: accessToken,
-                refreshToken: refreshToken.Token
+        return new OkResponse<AuthDto>(
+            data: new AuthDto(
+                AccessToken: accessToken,
+                RefreshToken: refreshToken.Token
             )
         );
     }

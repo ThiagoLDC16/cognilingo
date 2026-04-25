@@ -5,15 +5,15 @@ public sealed class RegisterCommandHandler(
     IPasswordHasher passwordHasher,
     ITokenService tokenService,
     AuthService authService
-) : IRequestHandler<RegisterCommand, Response<AuthResult>>
+) : IRequestHandler<RegisterCommand, Response<AuthDto>>
 {
-    public async Task<Response<AuthResult>> Handle(RegisterCommand request, CancellationToken cancellationToken)
+    public async Task<Response<AuthDto>> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
         var hasUser = await context.Users
             .AnyAsync(u => u.Email == request.Email, cancellationToken);
 
         if (hasUser)
-            return new UnprocessableResponse<AuthResult>(IdentityMessages.EmailAlreadyUsed);
+            return new UnprocessableResponse<AuthDto>(IdentityMessages.EmailAlreadyUsed);
 
         var user = new User(
             name: request.Name,
@@ -36,10 +36,10 @@ public sealed class RegisterCommandHandler(
 
         await context.SaveChangesAsync(cancellationToken);
 
-        return new OkResponse<AuthResult>(
-            data: new AuthResult(
-                accessToken: accessToken,
-                refreshToken: refreshToken.Token
+        return new OkResponse<AuthDto>(
+            data: new AuthDto(
+                AccessToken: accessToken,
+                RefreshToken: refreshToken.Token
             )
         );
     }

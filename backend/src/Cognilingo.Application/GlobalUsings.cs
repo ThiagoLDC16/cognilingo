@@ -10,7 +10,7 @@ global using Cognilingo.Application.Identity.Authentication;
 global using Cognilingo.Application.Identity.Interfaces;
 global using Cognilingo.Application.Identity.Interfaces.Context;
 global using Cognilingo.Application.Identity.Messages;
-global using Cognilingo.Application.Identity.Results;
+global using Cognilingo.Application.Identity.Dtos;
 global using Cognilingo.Application.Simulations.Abstractions.AI.ChatCompletion;
 global using Cognilingo.Application.Simulations.Abstractions.AI.Dtos;
 global using Cognilingo.Application.Simulations.Abstractions.AI.MessageFeedback;

@@ -4,7 +4,7 @@ public sealed record RegisterCommand(
     string Name,
     string Email,
     string Password
-) : IRequest<Response<AuthResult>>;
+) : IRequest<Response<AuthDto>>;
 
 public sealed class RegisterCommandValidator : AbstractValidator<RegisterCommand>
 {
