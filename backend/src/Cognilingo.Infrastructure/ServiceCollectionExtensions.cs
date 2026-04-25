@@ -9,8 +9,18 @@ public static class ServiceCollectionExtensions
     {
         AddPersistence(services, configuration);
         AddIdentityInfrastructure(services);
+        AddAiServices(services, configuration);
 
         return services;
+    }
+
+    private static void AddAiServices(IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<OpenAiChatOptions>(configuration.GetSection(OpenAiChatOptions.SectionName));
+        services.Configure<OpenAiFeedbackOptions>(configuration.GetSection(OpenAiFeedbackOptions.SectionName));
+
+        services.AddScoped<IChatCompletionService, OpenAiChatCompletionService>();
+        services.AddScoped<IMessageFeedbackService, OpenAiMessageFeedbackService>();
     }
 
     private static void AddPersistence(

@@ -1,5 +1,16 @@
 // Global using directives
 
+global using Cognilingo.Application.Simulations.Abstractions.AI.ChatCompletion;
+global using Cognilingo.Application.Simulations.Abstractions.AI.Dtos;
+global using Cognilingo.Application.Simulations.Abstractions.AI.MessageFeedback;
+global using Cognilingo.Domain.Simulations.Enums;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Options;
+global using System.ClientModel;
+global using OpenAI;
+global using OpenAI.Chat;
+global using Cognilingo.Infrastructure.Simulations.AI;
 global using System.IdentityModel.Tokens.Jwt;
 global using System.Security.Claims;
 global using System.Security.Cryptography;
