@@ -5,6 +5,7 @@ public sealed class Simulation : AggregateRoot
     public Guid UserId { get; private set; }
     public Guid SituationId { get; private set; }
     public Guid VariantId { get; private set; }
+    public SituationVariant Variant { get; private set; } = null!;
     public SimulationStatus Status { get; private set; }
     public DateTime? CompletedAt { get; private set; }
 

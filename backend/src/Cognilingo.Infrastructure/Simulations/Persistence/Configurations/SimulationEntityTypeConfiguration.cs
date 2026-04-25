@@ -24,7 +24,7 @@ public sealed class SimulationEntityTypeConfiguration : IEntityTypeConfiguration
             .HasForeignKey(s => s.SituationId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasOne<SituationVariant>()
+        builder.HasOne(s => s.Variant)
             .WithMany()
             .HasForeignKey(s => s.VariantId)
             .OnDelete(DeleteBehavior.Restrict);

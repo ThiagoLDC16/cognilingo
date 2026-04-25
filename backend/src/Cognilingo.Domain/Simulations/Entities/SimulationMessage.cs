@@ -27,6 +27,9 @@ public sealed class SimulationMessage : BaseEntity
         Feedback = feedback;
     }
 
+    public void SetFeedback(SimulationMessageFeedback feedback)
+        => Feedback = feedback;
+
     public void setTranslatedContent(string translatedContent)
         => TranslatedContent = translatedContent;
 }
