@@ -9,10 +9,38 @@ public sealed class SituationVariant : BaseEntity, ITranslatable<SituationVarian
 
     private readonly List<SituationVariantTranslation> _translations = new();
     public IReadOnlyCollection<SituationVariantTranslation> Translations => _translations;
+
+    public SituationVariant(Guid situationId, string learningLanguage, string promptInstructions, string initialMessage)
+    {
+        SituationId = situationId;
+        LearningLanguage = learningLanguage;
+        PromptInstructions = promptInstructions;
+        InitialMessage = initialMessage;
+    }
+
+    private SituationVariant()
+    {
+    }
+
+    public void AddTranslation(string languageCode, string name, string userContext)
+    {
+        _translations.Add(new SituationVariantTranslation(languageCode, name, userContext));
+    }
 }
 
 public sealed class SituationVariantTranslation : TranslationBase
 {
     public string Name { get; private set; }
     public string UserContext { get; private set; }
+
+    public SituationVariantTranslation(string languageCode, string name, string userContext)
+    {
+        LanguageCode = languageCode;
+        Name = name;
+        UserContext = userContext;
+    }
+
+    private SituationVariantTranslation()
+    {
+    }
 }

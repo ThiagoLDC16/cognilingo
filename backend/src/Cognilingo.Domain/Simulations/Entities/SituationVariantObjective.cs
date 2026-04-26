@@ -6,9 +6,31 @@ public sealed class SituationVariantObjective : BaseEntity, ITranslatable<Situat
 
     private readonly List<SituationVariantObjectiveTranslation> _translations = new();
     public IReadOnlyCollection<SituationVariantObjectiveTranslation> Translations => _translations;
+
+    public SituationVariantObjective(Guid situationVariantId)
+    {
+        SituationVariantId = situationVariantId;
+    }
+
+    private SituationVariantObjective()
+    {
+    }
+
+    public void AddTranslation(string languageCode, string name)
+    {
+        _translations.Add(new SituationVariantObjectiveTranslation(languageCode, name));
+    }
 }
 
 public sealed class SituationVariantObjectiveTranslation : TranslationBase
 {
     public string Name { get; private set; }
+
+    public SituationVariantObjectiveTranslation(string languageCode, string name)
+    {
+        LanguageCode = languageCode;
+        Name = name;
+    }
+
+    private SituationVariantObjectiveTranslation() { }
 }
