@@ -11,6 +11,7 @@ global using Cognilingo.Application.Identity.Queries.GetLoggedUser;
 global using Cognilingo.Application.Simulations.Commands.SendMessage;
 global using Cognilingo.Application.Simulations.Commands.StartSimulation;
 global using Cognilingo.Application.Simulations.Queries.ListCategories;
+global using Cognilingo.Application.Simulations.Queries.ListSituations;
 global using Cognilingo.Infrastructure.Common.Persistence;
 global using Cognilingo.Infrastructure.Identity.Options;
 global using MediatR;
