@@ -1,6 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Lê as origens do appsettings
 var allowedOrigins = builder.Configuration
     .GetSection("Cors:AllowedOrigins")
     .Get<string[]>();
@@ -25,14 +24,27 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApiDocument(settings =>
+{
+    settings.AddSecurity("Bearer", [], new OpenApiSecurityScheme()
+    {
+        Description = $"Example: \"Bearer {{token}}\"",
+        Name = "Authorization",
+        In = OpenApiSecurityApiKeyLocation.Header,
+        Type = OpenApiSecuritySchemeType.Http,
+        Scheme = "bearer"
+    });
+    settings.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("Bearer"));
+});
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseOpenApi();
+    app.UseSwaggerUi();
+
     await app.SeedDataAsync();
 }
 
