@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 import { storage } from '@/shared/utils/storage';
+
 import type { AuthUser } from '../types/auth-types';
 
 interface AuthTokens {

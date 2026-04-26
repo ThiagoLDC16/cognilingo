@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'expo-router';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 import { z } from 'zod';
 
@@ -9,7 +10,6 @@ import { authApi } from '@/features/auth/api/auth-api';
 import { authStore } from '@/features/auth/store/auth-store';
 import { Button } from '@/shared/components/Button';
 import { ControlledInput } from '@/shared/components/ControlledInput';
-import { useTranslation } from 'react-i18next';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
