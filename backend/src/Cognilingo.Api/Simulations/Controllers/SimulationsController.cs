@@ -12,6 +12,10 @@ public class SimulationsController(IMediator _mediator) : BaseController
     public async Task<IActionResult> ListSituations(Guid categoryId, [FromQuery] string languageCode)
         => MapResponse(await _mediator.Send(new ListSituationsQuery(categoryId, languageCode)));
 
+    [HttpGet("situations/{situationId:guid}/variants")]
+    public async Task<IActionResult> ListSituationVariants(Guid situationId, [FromQuery] string languageCode)
+        => MapResponse(await _mediator.Send(new ListSituationVariantsQuery(situationId, languageCode)));
+
     [HttpPost]
     public async Task<IActionResult> StartSimulation([FromBody] StartSimulationCommand command)
         => MapResponse(await _mediator.Send(command));
