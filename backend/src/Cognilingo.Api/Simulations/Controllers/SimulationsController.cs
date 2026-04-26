@@ -1,6 +1,7 @@
 namespace Cognilingo.Api.Simulations.Controllers;
 
 [Route("api/simulations")]
+[Authorize]
 public class SimulationsController(IMediator _mediator) : BaseController
 {
     [HttpGet("categories")]
