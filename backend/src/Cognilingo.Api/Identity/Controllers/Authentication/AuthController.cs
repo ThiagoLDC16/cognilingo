@@ -4,19 +4,19 @@ namespace Cognilingo.Api.Identity.Controllers.Authentication;
 public class AuthController(IMediator _mediator) : BaseController
 {
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginCommand command)
+    public async Task<IActionResult> Login([FromBody] LoginCommand command)
         => MapResponse(await _mediator.Send(command));
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterCommand command)
+    public async Task<IActionResult> Register([FromBody] RegisterCommand command)
         => MapResponse(await _mediator.Send(command));
 
     [HttpPost("refresh")]
-    public async Task<IActionResult> Refresh(RefreshTokenCommand command)
+    public async Task<IActionResult> Refresh([FromBody] RefreshTokenCommand command)
         => MapResponse(await _mediator.Send(command));
 
     [Authorize]
     [HttpGet("logged-user")]
-    public async Task<IActionResult> GetLoggedUser(GetLoggedUserQuery query)
-        => MapResponse(await _mediator.Send(query));
+    public async Task<IActionResult> GetLoggedUser()
+        => MapResponse(await _mediator.Send(new GetLoggedUserQuery()));
 }
