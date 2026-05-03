@@ -16,7 +16,7 @@ public sealed class ListCategoriesQueryHandler(
             .Select(c => new ListCategoryDto
             {
                 Id = c.Id,
-                ImageUrl = c.ImageUrl,
+                Icon = c.Icon,
                 Name = c.Translations
                     .Where(t => t.LanguageCode == languageCode)
                     .Select(t => t.Name)

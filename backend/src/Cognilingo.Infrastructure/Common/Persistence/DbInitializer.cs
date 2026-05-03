@@ -28,15 +28,15 @@ public static class DbInitializer
         if (await context.Categories.AnyAsync()) return;
 
         // 1. Categories
-        var socialCategory = new Category(imageUrl: "https://example.com/social.png");
+        var socialCategory = new Category(icon: "https://example.com/social.png");
         socialCategory.AddTranslation("en", "Social");
         socialCategory.AddTranslation("pt-BR", "Social");
 
-        var travelCategory = new Category(imageUrl: "https://example.com/travel.png");
+        var travelCategory = new Category(icon: "https://example.com/travel.png");
         travelCategory.AddTranslation("en", "Travel");
         travelCategory.AddTranslation("pt-BR", "Viagem");
 
-        var workCategory = new Category(imageUrl: "https://example.com/work.png");
+        var workCategory = new Category(icon: "https://example.com/work.png");
         workCategory.AddTranslation("en", "Work");
         workCategory.AddTranslation("pt-BR", "Trabalho");
 

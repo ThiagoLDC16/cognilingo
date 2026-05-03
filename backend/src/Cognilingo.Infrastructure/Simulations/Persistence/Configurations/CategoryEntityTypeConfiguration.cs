@@ -8,7 +8,7 @@ public sealed class CategoryEntityTypeConfiguration : IEntityTypeConfiguration<C
         
         builder.ConfigureCommonEntities();
 
-        builder.Property(c => c.ImageUrl)
-            .IsRequired(false);
+        builder.Property(c => c.Icon)
+            .IsRequired();
     }
 }
