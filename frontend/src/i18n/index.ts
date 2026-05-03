@@ -8,6 +8,10 @@ const resources = {
       internalError: 'An unexpected error occurred.',
       invalidCredentials: 'Invalid email or password.',
       emailAlreadyInUse: 'This email is already in use.',
+      'categories.title': 'Categories',
+      'categories.heading': 'Choose a Category',
+      'categories.subtitle': 'Practice real-life conversations',
+      'simulation.finish': 'Finish',
     },
   },
   pt: {
@@ -15,6 +19,10 @@ const resources = {
       internalError: 'Ocorreu um erro inesperado.',
       invalidCredentials: 'Email ou senha inválidos.',
       emailAlreadyInUse: 'Este email já está em uso.',
+      'categories.title': 'Categorias',
+      'categories.heading': 'Escolha uma Categoria',
+      'categories.subtitle': 'Pratique conversas da vida real',
+      'simulation.finish': 'Finalizar',
     },
   },
 };

@@ -50,6 +50,7 @@ Side effects:
 # FORBIDDEN PATTERNS
 - NEVER generate boilerplate "just in case" (empty catch blocks, TODO stubs, unused imports).
 - NEVER write comments that describe what the code does ("increments counter") instead of why.
+- NEVER use section comments (e.g. `{/* Header */}`) to delimit UI blocks within a component. Extract them into named subcomponents instead so the render tree is self-documenting.
 
 # Project Context:
 Cognilingo is a mobile and web application for language learning through simulations of real-life situations using AI. In the future, there will be additional modules and learning styles.
@@ -92,20 +93,5 @@ If you have any questions or need to make decisions, ask me so we can define the
 - Produce senior-level code (optimized, no redundancy, high readability)
 - Follow the DRY (Don't Repeat Yourself) principle
 - Simplify code whenever possible to facilitate code reviews
-- Use Expo skills (.agents/skills/building-native-ui)
-- Use beautiful and minimalist design
-
-# Pending Tasks:
-[] - Set up i18n with expo-localization + a translation library  
-        - Choose a library suitable for a scalable production application with good developer experience  
-        - Install the library and implement localization setup (default to the user's device language)  
-        - Create translation files in src/i18n  
-
-Set up application authentication  
-[] - Develop the initial authentication structure, including context, hooks, and other auth resources if needed, so components can access the logged-in user via useLoggedUser()  
-    - Consume JWT authentication endpoints with accessToken and refreshToken (available at features/auth/api/auth-api/index.ts)  
-    - Store tokens in Expo SecureStore (for native) and localStorage (for web). Use abstraction to handle this 
-    - Implement tokens retrieve in api/clients/api-client.ts
-[] - Develop login screen  
-[] - Develop registration screen
-[] - Develop home screen with text "Welcome {userName}"
+- Use i18n for translations in all UI
+- Verify endpoint contracts in file SimulationsEndpoints.md

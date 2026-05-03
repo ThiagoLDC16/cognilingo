@@ -1,4 +1,5 @@
 import '../global.css';
+import '@/i18n';
 
 import { Slot, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
