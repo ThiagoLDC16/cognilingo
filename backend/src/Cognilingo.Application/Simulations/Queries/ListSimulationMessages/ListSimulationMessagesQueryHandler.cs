@@ -17,13 +17,13 @@ public sealed class ListSimulationMessagesQueryHandler(
             .Select(m => new ListSimulationMessageDto
             {
                 Id = m.Id,
-                Sender = m.Sender.ToString(),
+                Sender = m.Sender,
                 Content = m.Content,
                 TranslatedContent = m.TranslatedContent,
                 Feedback = m.Feedback != null
                     ? new ListSimulationMessageFeedbackDto
                     {
-                        Classification = m.Feedback.Classification.ToString(),
+                        Classification = m.Feedback.Classification,
                         Explanation = m.Feedback.Explanation,
                         Correction = m.Feedback.Correction
                     }
