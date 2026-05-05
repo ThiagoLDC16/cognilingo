@@ -6,4 +6,5 @@ public sealed record ListSituationVariantDto
     public required string Name { get; init; }
     public required string UserContext { get; init; }
     public required string LanguageCode { get; init; }
+    public required IEnumerable<string> Objectives { get; init; }
 };

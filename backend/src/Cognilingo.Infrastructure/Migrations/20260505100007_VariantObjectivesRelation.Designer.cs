@@ -3,6 +3,7 @@ using System;
 using Cognilingo.Infrastructure.Common.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cognilingo.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260505100007_VariantObjectivesRelation")]
+    partial class VariantObjectivesRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -301,12 +304,17 @@ namespace Cognilingo.Infrastructure.Migrations
                     b.Property<Guid>("SituationVariantId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("SituationVariantId1")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
                     b.HasIndex("SituationVariantId");
+
+                    b.HasIndex("SituationVariantId1");
 
                     b.ToTable("situation_variant_objectives", (string)null);
                 });
@@ -541,10 +549,15 @@ namespace Cognilingo.Infrastructure.Migrations
             modelBuilder.Entity("Cognilingo.Domain.Simulations.Entities.SituationVariantObjective", b =>
                 {
                     b.HasOne("Cognilingo.Domain.Simulations.Entities.SituationVariant", null)
-                        .WithMany("Objectives")
+                        .WithMany()
                         .HasForeignKey("SituationVariantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Cognilingo.Domain.Simulations.Entities.SituationVariant", null)
+                        .WithMany("Objectives")
+                        .HasForeignKey("SituationVariantId1")
+                        .HasConstraintName("FK_situation_variant_objectives_situation_variants_SituationV~1");
                 });
 
             modelBuilder.Entity("Cognilingo.Domain.Simulations.Entities.SituationVariantObjectiveTranslation", b =>

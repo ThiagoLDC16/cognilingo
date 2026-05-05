@@ -25,7 +25,11 @@ public sealed class ListSituationVariantsQueryHandler(
                     .Where(t => t.LanguageCode == languageCode)
                     .Select(t => t.UserContext)
                     .FirstOrDefault()!,
-                LanguageCode = languageCode
+                LanguageCode = languageCode,
+                Objectives = v.Objectives
+                    .SelectMany(o => o.Translations)
+                    .Where(t => t.LanguageCode == languageCode)
+                    .Select(t => t.Name)
             })
             .ToListAsync(cancellationToken);
 

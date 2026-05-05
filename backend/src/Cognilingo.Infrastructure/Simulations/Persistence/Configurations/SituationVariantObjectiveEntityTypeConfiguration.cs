@@ -9,7 +9,7 @@ public sealed class SituationVariantObjectiveEntityTypeConfiguration : IEntityTy
         builder.ConfigureCommonEntities();
 
         builder.HasOne<SituationVariant>()
-            .WithMany()
+            .WithMany(sv => sv.Objectives)
             .HasForeignKey(svo => svo.SituationVariantId)
             .OnDelete(DeleteBehavior.Cascade);
     }

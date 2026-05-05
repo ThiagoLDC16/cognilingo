@@ -10,6 +10,9 @@ public sealed class SituationVariant : BaseEntity, ITranslatable<SituationVarian
     private readonly List<SituationVariantTranslation> _translations = new();
     public IReadOnlyCollection<SituationVariantTranslation> Translations => _translations;
 
+    private readonly List<SituationVariantObjective> _objectives = new();
+    public IReadOnlyCollection<SituationVariantObjective> Objectives => _objectives;
+
     public SituationVariant(Guid situationId, string learningLanguage, string promptInstructions, string initialMessage)
     {
         SituationId = situationId;
