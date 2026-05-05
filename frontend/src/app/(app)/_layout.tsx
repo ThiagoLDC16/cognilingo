@@ -17,6 +17,12 @@ export default function AppLayout() {
           headerTitleAlign: 'center',
         }}
       />
+      <Stack.Screen
+        name="simulation/completed/[simulationId]"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 }

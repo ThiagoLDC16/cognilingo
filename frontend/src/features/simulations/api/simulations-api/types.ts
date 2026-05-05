@@ -17,6 +17,7 @@ export interface Variant {
   name: string;
   userContext: string;
   languageCode: string;
+  objectives: string[];
 }
 
 export interface MessageFeedback {
@@ -25,9 +26,14 @@ export interface MessageFeedback {
   correction: string | null;
 }
 
+export enum MessageSender {
+  AI = 1,
+  USER = 2
+}
+
 export interface SimulationMessage {
   id: string;
-  sender: number;
+  sender: MessageSender;
   content: string;
   translatedContent: string | null;
   feedback: MessageFeedback | null;

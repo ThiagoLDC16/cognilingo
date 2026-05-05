@@ -1,6 +1,6 @@
 import { apiClient } from '@/shared/api/clients/api-client';
 
-import type { Category, Situation, SimulationMessage, Variant } from './types';
+import type { Category, SimulationMessage, Situation, Variant } from './types';
 
 export const simulationsApi = {
   async listCategories(languageCode: string) {
@@ -44,5 +44,9 @@ export const simulationsApi = {
       { content },
     );
     return response.data;
+  },
+
+  async finishSimulation(simulationId: string) {
+    await apiClient.post(`/api/simulations/${simulationId}/finish`);
   },
 };
