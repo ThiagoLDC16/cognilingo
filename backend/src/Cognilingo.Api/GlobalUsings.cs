@@ -9,6 +9,7 @@ global using Cognilingo.Application.Identity.Commands.RefreshTokens;
 global using Cognilingo.Application.Identity.Commands.Register;
 global using Cognilingo.Application.Identity.Queries.GetLoggedUser;
 global using Cognilingo.Application.Simulations.Commands.SendMessage;
+global using Cognilingo.Application.Simulations.Commands.FinishSimulation;
 global using Cognilingo.Application.Simulations.Commands.StartSimulation;
 global using Cognilingo.Application.Simulations.Queries.ListCategories;
 global using Cognilingo.Application.Simulations.Queries.ListSituations;

@@ -25,8 +25,16 @@ public sealed class OpenAiChatCompletionService : IChatCompletionService
             .Select(MapToChatMessage);
 
         var messages = new List<ChatMessage>();
+        
+        var systemPrompt = $"""
+                            {request.SystemPrompt}
+                      
+                            # Instructions:
+                            - NEVER respond in markdown, ALWAYS in plain text
+                            - Respond in a natural and humanized way, with one idea at a time
+                            """;
 
-        messages.Add(new SystemChatMessage(request.SystemPrompt));
+        messages.Add(new SystemChatMessage(systemPrompt));
         messages.AddRange(historyToInclude);
         messages.Add(new UserChatMessage(request.UserMessage));
 

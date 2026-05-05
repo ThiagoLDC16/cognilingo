@@ -27,4 +27,8 @@ public class SimulationsController(IMediator _mediator) : BaseController
     [HttpPost("{id:guid}/messages")]
     public async Task<IActionResult> SendMessage(Guid id, [FromBody] SendMessagePayload payload)
         => MapResponse(await _mediator.Send(payload.AsCommand(id)));
+
+    [HttpPost("{id:guid}/finish")]
+    public async Task<IActionResult> FinishSimulation(Guid id)
+        => MapResponse(await _mediator.Send(new FinishSimulationCommand(id)));
 }
