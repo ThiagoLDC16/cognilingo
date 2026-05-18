@@ -1,10 +1,9 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 
-import { useVariants } from '../hooks/use-variants';
 import { VariantCarousel } from '../components/variant-carousel';
+import { useVariants } from '../hooks/use-variants';
 
 function StartSimulationButton({
   onPress,
@@ -35,7 +34,6 @@ function StartSimulationButton({
             <Text className="text-lg font-bold text-md-on-primary">
               {t('variants.startSimulation')}
             </Text>
-            <MaterialIcons name="play-arrow" size={20} color="#ffffff" />
           </>
         )}
       </Pressable>

@@ -30,12 +30,11 @@ function VariantObjectives({ objectives }: { objectives: string[] }) {
       </Text>
       <View className="gap-2">
         {objectives.map((objective) => (
-          <View key={objective} className="flex-row items-start gap-2">
+          <View key={objective} className="flex-row items-center gap-2">
             <MaterialIcons
-              name="arrow-right"
+              name="check-box-outline-blank"
               size={18}
               color="#4343d5"
-              style={{ marginTop: 2 }}
             />
             <Text className="text-sm text-md-on-surface-variant flex-1 leading-5">
               {objective}
