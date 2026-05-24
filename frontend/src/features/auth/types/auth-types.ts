@@ -1,6 +1,7 @@
 export interface AuthUser {
   id: string;
   name: string;
+  hasProfile: boolean;
 }
 
 export interface AuthState {

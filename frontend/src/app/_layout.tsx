@@ -45,16 +45,22 @@ export default function RootLayout() {
     restoreSession();
   }, []);
 
-  // Secure routing rules 
+  // Secure routing rules
   useEffect(() => {
     if (!isReady) return;
 
     const inAuthGroup = segments[0] === '(auth)';
+    const inOnboardingGroup = segments[0] === '(onboarding)';
     const isLoggedIn = !!user;
+    const hasProfile = user?.hasProfile ?? false;
 
     if (!isLoggedIn && !inAuthGroup) {
       router.replace('/(auth)/login');
     } else if (isLoggedIn && inAuthGroup) {
+      router.replace(hasProfile ? '/(app)/' : '/(onboarding)/setup');
+    } else if (isLoggedIn && !hasProfile && !inOnboardingGroup) {
+      router.replace('/(onboarding)/setup');
+    } else if (isLoggedIn && hasProfile && inOnboardingGroup) {
       router.replace('/(app)/');
     }
   }, [user, isReady, segments, router]);

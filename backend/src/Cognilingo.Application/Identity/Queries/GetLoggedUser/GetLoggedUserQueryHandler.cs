@@ -13,15 +13,22 @@ public sealed class GetLoggedUserQueryHandler(
         if (requestContext.UserId is null)
             return new UnauthorizedResponse<GetLoggedUserDto>(IdentityMessages.UserNotFound);
 
+        var userId = requestContext.UserId.Value;
+
+        var hasProfile = await context.UserProfiles
+            .AsNoTracking()
+            .AnyAsync(p => p.UserId == userId, cancellationToken);
+
         var user = await context.Users
             .AsNoTracking()
             .Select(u => new GetLoggedUserDto
             {
                 Id = u.Id,
                 Name = u.Name,
-                Email = u.Email
+                Email = u.Email,
+                HasProfile = hasProfile
             })
-            .FirstOrDefaultAsync(u => u.Id == requestContext.UserId, cancellationToken);
+            .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
 
         if (user is null)
             return new UnauthorizedResponse<GetLoggedUserDto>(IdentityMessages.UserNotFound);

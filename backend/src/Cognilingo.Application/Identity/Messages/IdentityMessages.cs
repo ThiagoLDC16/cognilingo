@@ -7,4 +7,7 @@ public static class IdentityMessages
     public const string WrongPassword = "wrongPassword";
     public const string InvalidRefreshToken = "invalidRefreshToken";
     public const string ExpiredRefreshToken = "expiredRefreshToken";
+    public const string ProfileAlreadyExists = "profileAlreadyExists";
+    public const string InvalidLanguage = "invalidLanguage";
+    public const string LanguagesMustBeDifferent = "languagesMustBeDifferent";
 }

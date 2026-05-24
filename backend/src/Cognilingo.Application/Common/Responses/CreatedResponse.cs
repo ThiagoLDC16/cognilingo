@@ -12,3 +12,5 @@ public sealed record CreatedResponse<T> : Response<T>
     {
     }
 }
+
+public sealed record CreatedResponse() : Response(ResponseStatus.Created);
