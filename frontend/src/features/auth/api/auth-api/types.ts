@@ -17,3 +17,7 @@ export interface RegisterPayload {
 }
 
 export type LoggedUserResponse = AuthUser;
+
+export interface LogoutPayload {
+  refreshToken: string;
+}

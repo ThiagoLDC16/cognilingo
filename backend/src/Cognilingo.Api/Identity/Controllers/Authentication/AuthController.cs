@@ -19,4 +19,9 @@ public class AuthController(IMediator _mediator) : BaseController
     [HttpGet("logged-user")]
     public async Task<IActionResult> GetLoggedUser()
         => MapResponse(await _mediator.Send(new GetLoggedUserQuery()));
+
+    [Authorize]
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout([FromBody] LogoutCommand command)
+        => MapResponse(await _mediator.Send(command));
 }

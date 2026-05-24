@@ -29,6 +29,11 @@ const resources = {
       'variants.subtitle': 'Select a scenario variant to practice.',
       'variants.objectives': 'Objectives',
       'variants.startSimulation': 'Start Simulation',
+      'sidebar.logout': 'Log out',
+      'logout.dialog.title': 'Log out?',
+      'logout.dialog.message': 'You will be returned to the login screen.',
+      'logout.dialog.confirm': 'Log out',
+      'logout.dialog.cancel': 'Cancel',
     },
   },
   pt: {
@@ -57,6 +62,11 @@ const resources = {
       'variants.subtitle': 'Selecione uma variante de cenário para praticar.',
       'variants.objectives': 'Objetivos',
       'variants.startSimulation': 'Iniciar Simulação',
+      'sidebar.logout': 'Sair',
+      'logout.dialog.title': 'Sair da conta?',
+      'logout.dialog.message': 'Você será redirecionado para a tela de login.',
+      'logout.dialog.confirm': 'Sair',
+      'logout.dialog.cancel': 'Cancelar',
     },
   },
 };

@@ -6,6 +6,7 @@ global using Cognilingo.Api.Simulations.Payloads;
 global using Cognilingo.Application.Common.Responses.Base;
 global using Cognilingo.Application.Identity.Commands.CreateProfile;
 global using Cognilingo.Application.Identity.Commands.Login;
+global using Cognilingo.Application.Identity.Commands.Logout;
 global using Cognilingo.Application.Identity.Commands.RefreshTokens;
 global using Cognilingo.Application.Identity.Commands.Register;
 global using Cognilingo.Application.Identity.Queries.GetLanguages;
