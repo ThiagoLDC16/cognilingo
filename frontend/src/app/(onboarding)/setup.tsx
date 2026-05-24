@@ -60,6 +60,10 @@ export default function SetupScreen() {
     }
   };
 
+  const handleBack = () => {
+    setStep((s) => s - 1);
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 px-6 pt-10 pb-6">
@@ -87,13 +91,22 @@ export default function SetupScreen() {
         />
 
         {/* Action */}
-        <Button
-          title={isLastStep ? 'Concluir' : 'Próximo'}
-          onPress={handleNext}
-          disabled={!selected}
-          loading={isSubmitting}
-          className="mt-4"
-        />
+        <View className="flex-row gap-3 mt-4">
+          <Button
+            title="Voltar"
+            onPress={handleBack}
+            disabled={step === 0}
+            className="flex-1"
+            variant="secondary"
+          />
+          <Button
+            title={isLastStep ? 'Concluir' : 'Próximo'}
+            onPress={handleNext}
+            disabled={!selected}
+            loading={isSubmitting}
+            className="flex-1"
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
