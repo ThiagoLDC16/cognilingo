@@ -1,3 +1,7 @@
+using DotNetEnv;
+
+Env.Load();
+
 var builder = WebApplication.CreateBuilder(args);
 
 var allowedOrigins = builder.Configuration
