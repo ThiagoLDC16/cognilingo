@@ -39,6 +39,7 @@ export default function RegisterScreen() {
 
       const user = await authApi.getLoggedUser();
       authStore.getState().setUser(user);
+      router.replace('/(onboarding)/setup');
     } catch (e: any) {
       if (e.response?.data?.errors?.length) {
         setErrorMsg(t(e.response.data.errors[0]));

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Pressable, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 import { authApi } from '@/features/auth/api/auth-api';
@@ -9,6 +10,7 @@ import { ConfirmationModal } from '@/shared/components/ConfirmationModal';
 
 export const LogoutButton = () => {
   const { t } = useTranslation();
+  const router = useRouter();
   const [dialogVisible, setDialogVisible] = useState(false);
   const logout = authStore((state) => state.logout);
   const refreshToken = authStore((state) => state.refreshToken);
@@ -19,6 +21,7 @@ export const LogoutButton = () => {
       await authApi.logout({ refreshToken }).catch(() => {});
     }
     logout();
+    router.replace('/(auth)/login');
   };
 
   return (

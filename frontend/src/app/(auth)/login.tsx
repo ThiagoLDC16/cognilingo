@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +20,7 @@ type LoginForm = z.infer<typeof loginSchema>;
 
 export default function LoginScreen() {
   const { t } = useTranslation();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -37,6 +38,7 @@ export default function LoginScreen() {
 
       const user = await authApi.getLoggedUser();
       authStore.getState().setUser(user);
+      router.replace(user.hasProfile ? '/(app)/' : '/(onboarding)/setup');
     } catch (e: any) {
       if (e.response?.data?.errors?.length) {
         setErrorMsg(t(e.response.data.errors[0]));

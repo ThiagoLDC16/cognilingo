@@ -1,7 +1,7 @@
 import '@/i18n';
 import '../global.css';
 
-import { Slot, useRouter, useSegments } from 'expo-router';
+import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
@@ -13,11 +13,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const isReady = authStore((state) => state.isReady);
-  const user = authStore((state) => state.user);
-  const segments = useSegments();
-  const router = useRouter();
 
-  // Load user from persistent storage on startup
   useEffect(() => {
     const restoreSession = async () => {
       try {
@@ -27,7 +23,6 @@ export default function RootLayout() {
         if (accessToken && refreshToken) {
           authStore.getState().setTokens({ accessToken, refreshToken });
           try {
-            // Fetch profile securely
             const loggedUser = await authApi.getLoggedUser();
             authStore.getState().setUser(loggedUser);
           } catch (e) {
@@ -45,27 +40,6 @@ export default function RootLayout() {
     restoreSession();
   }, []);
 
-  // Secure routing rules
-  useEffect(() => {
-    if (!isReady) return;
-
-    const inAuthGroup = segments[0] === '(auth)';
-    const inOnboardingGroup = segments[0] === '(onboarding)';
-    const isLoggedIn = !!user;
-    const hasProfile = user?.hasProfile ?? false;
-
-    if (!isLoggedIn && !inAuthGroup) {
-      router.replace('/(auth)/login');
-    } else if (isLoggedIn && inAuthGroup) {
-      router.replace(hasProfile ? '/(app)/' : '/(onboarding)/setup');
-    } else if (isLoggedIn && !hasProfile && !inOnboardingGroup) {
-      router.replace('/(onboarding)/setup');
-    } else if (isLoggedIn && hasProfile && inOnboardingGroup) {
-      router.replace('/(app)/');
-    }
-  }, [user, isReady, segments, router]);
-
-  // Dismiss splash screen post hydration
   useEffect(() => {
     if (isReady) {
       SplashScreen.hideAsync();
