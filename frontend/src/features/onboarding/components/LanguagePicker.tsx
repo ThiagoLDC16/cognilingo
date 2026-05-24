@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import type { Language } from '../api/onboarding-api/types';
@@ -10,6 +11,7 @@ interface LanguagePickerProps {
 }
 
 export function LanguagePicker({ languages, selected, onSelect }: LanguagePickerProps) {
+  const { t } = useTranslation();
   const [query, setQuery] = useState('');
 
   const filtered = useMemo(
@@ -25,7 +27,7 @@ export function LanguagePicker({ languages, selected, onSelect }: LanguagePicker
         <TextInput
           value={query}
           onChangeText={setQuery}
-          placeholder="Buscar idioma..."
+          placeholder={t('setup.searchLanguage')}
           placeholderTextColor="#94a3b8"
           className="flex-1 text-slate-900 text-base"
         />

@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
@@ -11,19 +11,23 @@ import { authStore } from '@/features/auth/store/auth-store';
 import { Button } from '@/shared/components/Button';
 import { ControlledInput } from '@/shared/components/ControlledInput';
 
-const registerSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-});
-
-type RegisterForm = z.infer<typeof registerSchema>;
+type RegisterForm = { name: string; email: string; password: string };
 
 export default function RegisterScreen() {
   const { t } = useTranslation();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+
+  const registerSchema = useMemo(
+    () =>
+      z.object({
+        name: z.string().min(2, t('register.validation.name')),
+        email: z.string().email(t('register.validation.email')),
+        password: z.string().min(6, t('register.validation.password')),
+      }),
+    [t],
+  );
 
   const { control, handleSubmit } = useForm<RegisterForm>({
     resolver: zodResolver(registerSchema),
@@ -58,8 +62,8 @@ export default function RegisterScreen() {
     >
       <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', padding: 24 }}>
         <View className="items-center mb-10">
-          <Text className="text-3xl font-bold text-slate-900 mb-2">Create Account</Text>
-          <Text className="text-base text-slate-500">Join Cognilingo to start learning</Text>
+          <Text className="text-3xl font-bold text-slate-900 mb-2">{t('register.heading')}</Text>
+          <Text className="text-base text-slate-500">{t('register.subtitle')}</Text>
         </View>
 
         {errorMsg ? (
@@ -69,16 +73,16 @@ export default function RegisterScreen() {
         <ControlledInput
           name="name"
           control={control}
-          label="Name"
-          placeholder="Enter your name"
+          label={t('register.name.label')}
+          placeholder={t('register.name.placeholder')}
           autoCapitalize="words"
         />
 
         <ControlledInput
           name="email"
           control={control}
-          label="Email"
-          placeholder="Enter your email"
+          label={t('register.email.label')}
+          placeholder={t('register.email.placeholder')}
           keyboardType="email-address"
           autoCapitalize="none"
         />
@@ -86,25 +90,25 @@ export default function RegisterScreen() {
         <ControlledInput
           name="password"
           control={control}
-          label="Password"
-          placeholder="Create a password"
+          label={t('register.password.label')}
+          placeholder={t('register.password.placeholder')}
           secureTextEntry
         />
 
         <Button
-          title="Sign Up"
+          title={t('register.button')}
           onPress={handleSubmit(onSubmit)}
           loading={isLoading}
           className="mt-6"
         />
 
         <View className="flex-row justify-center mt-6 gap-1">
-          <Text className="text-slate-600">Already have an account?</Text>
+          <Text className="text-slate-600">{t('register.hasAccount')}</Text>
           <Text
             className="text-blue-600 font-semibold"
             onPress={() => router.back()}
           >
-            Log in
+            {t('register.logIn')}
           </Text>
         </View>
       </ScrollView>

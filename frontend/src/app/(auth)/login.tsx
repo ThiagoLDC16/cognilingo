@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, useRouter } from 'expo-router';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
@@ -11,18 +11,22 @@ import { authStore } from '@/features/auth/store/auth-store';
 import { Button } from '@/shared/components/Button';
 import { ControlledInput } from '@/shared/components/ControlledInput';
 
-const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-});
-
-type LoginForm = z.infer<typeof loginSchema>;
+type LoginForm = { email: string; password: string };
 
 export default function LoginScreen() {
   const { t } = useTranslation();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+
+  const loginSchema = useMemo(
+    () =>
+      z.object({
+        email: z.string().email(t('login.validation.email')),
+        password: z.string().min(6, t('login.validation.password')),
+      }),
+    [t],
+  );
 
   const { control, handleSubmit } = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
@@ -58,7 +62,7 @@ export default function LoginScreen() {
       <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', padding: 24 }}>
         <View className="items-center mb-10">
           <Text className="text-4xl font-extrabold text-blue-600 mb-2">Cognilingo</Text>
-          <Text className="text-lg text-slate-500">Welcome back!</Text>
+          <Text className="text-lg text-slate-500">{t('login.subtitle')}</Text>
         </View>
 
         {errorMsg ? (
@@ -68,8 +72,8 @@ export default function LoginScreen() {
         <ControlledInput
           name="email"
           control={control}
-          label="Email"
-          placeholder="Enter your email"
+          label={t('login.email.label')}
+          placeholder={t('login.email.placeholder')}
           keyboardType="email-address"
           autoCapitalize="none"
         />
@@ -77,22 +81,22 @@ export default function LoginScreen() {
         <ControlledInput
           name="password"
           control={control}
-          label="Password"
-          placeholder="Enter your password"
+          label={t('login.password.label')}
+          placeholder={t('login.password.placeholder')}
           secureTextEntry
         />
 
         <Button
-          title="Login"
+          title={t('login.button')}
           onPress={handleSubmit(onSubmit)}
           loading={isLoading}
           className="mt-6"
         />
 
         <View className="flex-row justify-center mt-6 gap-1">
-          <Text className="text-slate-600">Don't have an account?</Text>
+          <Text className="text-slate-600">{t('login.noAccount')}</Text>
           <Link href="/(auth)/register" asChild>
-            <Text className="text-blue-600 font-semibold">Sign up</Text>
+            <Text className="text-blue-600 font-semibold">{t('login.signUp')}</Text>
           </Link>
         </View>
       </ScrollView>

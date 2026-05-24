@@ -1,5 +1,6 @@
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, View } from 'react-native';
 
@@ -9,18 +10,19 @@ import { LanguagePicker } from '@/features/onboarding/components/LanguagePicker'
 import { authStore } from '@/features/auth/store/auth-store';
 import { Button } from '@/shared/components/Button';
 
-const STEPS = [
-  { title: 'Qual é o seu idioma nativo?', key: 'native' as const },
-  { title: 'Qual idioma você quer praticar?', key: 'learning' as const },
-];
-
 export default function SetupScreen() {
+  const { t } = useTranslation();
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [languages, setLanguages] = useState<Language[]>([]);
   const [nativeLanguage, setNativeLanguage] = useState<string | null>(null);
   const [learningLanguage, setLearningLanguage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const STEPS = [
+    { title: t('setup.nativeLanguage'), key: 'native' as const },
+    { title: t('setup.learningLanguage'), key: 'learning' as const },
+  ];
 
   useEffect(() => {
     onboardingApi.getLanguages().then(setLanguages);
@@ -67,7 +69,6 @@ export default function SetupScreen() {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 px-6 pt-10 pb-6">
-        {/* Progress */}
         <View className="flex-row gap-2 mb-10">
           {STEPS.map((_, i) => (
             <View
@@ -77,30 +78,27 @@ export default function SetupScreen() {
           ))}
         </View>
 
-        {/* Header */}
         <Text className="text-2xl font-bold text-slate-900 mb-1">
-          Passo {step + 1} de {STEPS.length}
+          {t('setup.step', { current: step + 1, total: STEPS.length })}
         </Text>
         <Text className="text-lg text-slate-600 mb-6">{currentStep.title}</Text>
 
-        {/* Language picker */}
         <LanguagePicker
           languages={availableLanguages}
           selected={selected}
           onSelect={setSelected}
         />
 
-        {/* Action */}
         <View className="flex-row gap-3 mt-4">
           <Button
-            title="Voltar"
+            title={t('setup.back')}
             onPress={handleBack}
             disabled={step === 0}
             className="flex-1"
             variant="secondary"
           />
           <Button
-            title={isLastStep ? 'Concluir' : 'Próximo'}
+            title={isLastStep ? t('setup.done') : t('setup.next')}
             onPress={handleNext}
             disabled={!selected}
             loading={isSubmitting}
