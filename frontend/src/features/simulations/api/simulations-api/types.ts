@@ -38,3 +38,7 @@ export interface SimulationMessage {
   translatedContent: string | null;
   feedback: MessageFeedback | null;
 }
+
+export interface TranslateMessageResponse {
+  translatedContent: string;
+}

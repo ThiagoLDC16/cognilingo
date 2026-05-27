@@ -43,7 +43,7 @@ export default function SimulationScreen() {
   }>();
   const { t } = useTranslation();
   const router = useRouter();
-  const { messages, isLoading, isSending, isFinishing, error, sendMessage, finishSimulation } =
+  const { messages, isLoading, isSending, isFinishing, translatingMessageIds, error, sendMessage, translateMessage, finishSimulation } =
     useSimulation(simulationId);
   const flatListRef = useRef<FlatList<SimulationMessage>>(null);
 
@@ -126,7 +126,13 @@ export default function SimulationScreen() {
         ref={flatListRef}
         data={messages}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ChatMessageBubble message={item} />}
+        renderItem={({ item }) => (
+            <ChatMessageBubble
+              message={item}
+              onTranslate={translateMessage}
+              isTranslating={translatingMessageIds.has(item.id)}
+            />
+          )}
         contentContainerClassName="px-6 py-4 gap-6"
         ListHeaderComponent={<SimulationStartedBadge />}
         ListFooterComponent={isSending ? <TypingIndicator /> : null}

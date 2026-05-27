@@ -3,6 +3,7 @@
 global using Cognilingo.Application.Simulations.Abstractions.AI.ChatCompletion;
 global using Cognilingo.Application.Simulations.Abstractions.AI.Dtos;
 global using Cognilingo.Application.Simulations.Abstractions.AI.MessageFeedback;
+global using Cognilingo.Application.Simulations.Abstractions.AI.MessageTranslation;
 global using Cognilingo.Domain.Simulations.Enums;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;

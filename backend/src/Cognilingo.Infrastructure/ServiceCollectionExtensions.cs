@@ -18,9 +18,11 @@ public static class ServiceCollectionExtensions
     {
         services.Configure<OpenAiChatOptions>(configuration.GetSection(OpenAiChatOptions.SectionName));
         services.Configure<OpenAiFeedbackOptions>(configuration.GetSection(OpenAiFeedbackOptions.SectionName));
+        services.Configure<OpenAiTranslationOptions>(configuration.GetSection(OpenAiTranslationOptions.SectionName));
 
         services.AddScoped<IChatCompletionService, OpenAiChatCompletionService>();
         services.AddScoped<IMessageFeedbackService, OpenAiMessageFeedbackService>();
+        services.AddScoped<IMessageTranslationService, OpenAiMessageTranslationService>();
     }
 
     private static void AddPersistence(

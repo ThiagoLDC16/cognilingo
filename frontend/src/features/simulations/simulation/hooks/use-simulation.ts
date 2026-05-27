@@ -8,6 +8,7 @@ interface UseSimulationState {
   isLoading: boolean;
   isSending: boolean;
   isFinishing: boolean;
+  translatingMessageIds: Set<string>;
   error: string | null;
 }
 
@@ -19,6 +20,7 @@ export function useSimulation(simulationId: string) {
     isLoading: true,
     isSending: false,
     isFinishing: false,
+    translatingMessageIds: new Set(),
     error: null,
   });
 
@@ -30,11 +32,11 @@ export function useSimulation(simulationId: string) {
       try {
         const messages = await simulationsApi.listMessages(simulationId);
         if (!cancelled) {
-          setState({ messages, isLoading: false, isSending: false, isFinishing: false, error: null });
+          setState({ messages, isLoading: false, isSending: false, isFinishing: false, translatingMessageIds: new Set(), error: null });
         }
       } catch {
         if (!cancelled) {
-          setState({ messages: [], isLoading: false, isSending: false, isFinishing: false, error: 'internalError' });
+          setState({ messages: [], isLoading: false, isSending: false, isFinishing: false, translatingMessageIds: new Set(), error: 'internalError' });
         }
       }
     };
@@ -86,6 +88,31 @@ export function useSimulation(simulationId: string) {
     [simulationId],
   );
 
+  const translateMessage = useCallback(
+    async (messageId: string) => {
+      setState((prev) => ({
+        ...prev,
+        translatingMessageIds: new Set([...prev.translatingMessageIds, messageId]),
+      }));
+      try {
+        const { translatedContent } = await simulationsApi.translateMessage(simulationId, messageId);
+        setState((prev) => ({
+          ...prev,
+          messages: prev.messages.map((m) =>
+            m.id === messageId ? { ...m, translatedContent } : m,
+          ),
+          translatingMessageIds: new Set([...prev.translatingMessageIds].filter((id) => id !== messageId)),
+        }));
+      } catch {
+        setState((prev) => ({
+          ...prev,
+          translatingMessageIds: new Set([...prev.translatingMessageIds].filter((id) => id !== messageId)),
+        }));
+      }
+    },
+    [simulationId],
+  );
+
   const finishSimulation = useCallback(async () => {
     setState((prev) => ({ ...prev, isFinishing: true, error: null }));
     try {
@@ -96,5 +123,5 @@ export function useSimulation(simulationId: string) {
     }
   }, [simulationId]);
 
-  return { ...state, sendMessage, finishSimulation };
+  return { ...state, sendMessage, translateMessage, finishSimulation };
 }

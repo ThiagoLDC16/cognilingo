@@ -28,6 +28,10 @@ public class SimulationsController(IMediator _mediator) : BaseController
     public async Task<IActionResult> SendMessage(Guid id, [FromBody] SendMessagePayload payload)
         => MapResponse(await _mediator.Send(payload.AsCommand(id)));
 
+    [HttpPost("{id:guid}/messages/{messageId:guid}/translate")]
+    public async Task<IActionResult> TranslateMessage(Guid id, Guid messageId)
+        => MapResponse(await _mediator.Send(new TranslateMessageCommand(id, messageId)));
+
     [HttpPost("{id:guid}/finish")]
     public async Task<IActionResult> FinishSimulation(Guid id)
         => MapResponse(await _mediator.Send(new FinishSimulationCommand(id)));
