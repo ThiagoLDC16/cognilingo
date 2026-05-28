@@ -104,31 +104,33 @@ function AiBubble({ message, onTranslate, isTranslating }: ChatMessageBubbleProp
 }
 
 function UserBubble({ message }: Pick<ChatMessageBubbleProps, 'message'>) {
-  const hasFeedback = message.feedback && message.feedback.classification > 0;
+  const hasFeedback = message.feedback !== null;
+
+  const bubble = (
+    <View
+      className="bg-md-primary p-4"
+      style={{
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 4,
+        borderCurve: 'continuous',
+        boxShadow: '0 4px 15px rgba(93, 95, 239, 0.15)',
+      }}
+    >
+      <Text className="text-base text-md-on-primary">{message.content}</Text>
+    </View>
+  );
 
   return (
     <View className="items-end self-end max-w-[85%]">
-      <View className="relative">
-        <View
-          className="bg-md-primary p-4"
-          style={{
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-            borderBottomLeftRadius: 20,
-            borderBottomRightRadius: 4,
-            borderCurve: 'continuous',
-            boxShadow: '0 4px 15px rgba(93, 95, 239, 0.15)',
-          }}
-        >
-          <Text className="text-base text-md-on-primary">{message.content}</Text>
-        </View>
-        {hasFeedback && (
-          <GrammarTip
-            feedback={message.feedback!}
-            originalContent={message.content}
-          />
-        )}
-      </View>
+      {hasFeedback ? (
+        <GrammarTip feedback={message.feedback!} originalContent={message.content}>
+          {bubble}
+        </GrammarTip>
+      ) : (
+        bubble
+      )}
     </View>
   );
 }

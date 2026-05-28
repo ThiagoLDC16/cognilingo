@@ -20,8 +20,16 @@ export interface Variant {
   objectives: string[];
 }
 
+export enum MessageFeedbackClassification {
+  Correct = 0,
+  Grammar = 1,
+  Vocabulary = 2,
+  Context = 3,
+  Spelling = 4,
+}
+
 export interface MessageFeedback {
-  classification: number;
+  classification: MessageFeedbackClassification;
   explanation: string | null;
   correction: string | null;
 }
