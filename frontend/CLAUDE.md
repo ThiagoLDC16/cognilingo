@@ -94,4 +94,3 @@ If you have any questions or need to make decisions, ask me so we can define the
 - Follow the DRY (Don't Repeat Yourself) principle
 - Simplify code whenever possible to facilitate code reviews
 - Use i18n for translations in all UI
-- Verify endpoint contracts in file SimulationsEndpoints.md
