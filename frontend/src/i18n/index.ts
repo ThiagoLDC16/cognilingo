@@ -3,7 +3,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 const resources = {
-  en: {
+  'en-US': {
     translation: {
       internalError: 'An unexpected error occurred.',
       invalidCredentials: 'Invalid email or password.',
@@ -68,7 +68,7 @@ const resources = {
       'logout.dialog.cancel': 'Cancel',
     },
   },
-  pt: {
+  'pt-BR': {
     translation: {
       internalError: 'Ocorreu um erro inesperado.',
       invalidCredentials: 'Email ou senha inválidos.',
@@ -137,7 +137,7 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: Localization.getLocales()[0]?.languageCode ?? 'en',
+  lng: Localization.getLocales()[0]?.languageTag ?? 'en-US',
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false,

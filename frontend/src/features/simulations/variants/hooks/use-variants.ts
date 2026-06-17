@@ -21,7 +21,7 @@ export function useVariants(situationId: string) {
     isStarting: false,
   });
 
-  const languageCode = Localization.getLocales()[0]?.languageCode ?? 'en';
+  const languageCode = Localization.getLocales()[0]?.languageTag ?? 'en-US';
 
   useEffect(() => {
     let cancelled = false;

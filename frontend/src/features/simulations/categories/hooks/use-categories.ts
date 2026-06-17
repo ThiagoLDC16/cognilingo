@@ -17,7 +17,7 @@ export function useCategories() {
     error: null,
   });
 
-  const languageCode = Localization.getLocales()[0]?.languageCode ?? 'en';
+  const languageCode = Localization.getLocales()[0]?.languageTag ?? 'en-US';
 
   useEffect(() => {
     let cancelled = false;
