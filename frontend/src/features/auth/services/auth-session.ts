@@ -1,5 +1,10 @@
-import { authApi } from '../api/auth-api';
+import axios from 'axios';
+
+import { env } from '@/shared/config/env';
+
 import { authStore } from '../store/auth-store';
+
+import type { AuthTokensResponse } from '../api/auth-api/types';
 
 export const refreshAuthSession = async (): Promise<{ accessToken: string; refreshToken: string } | null> => {
   const state = authStore.getState();
@@ -11,10 +16,18 @@ export const refreshAuthSession = async (): Promise<{ accessToken: string; refre
   }
 
   try {
-    const tokens = await authApi.refreshTokens({ refreshToken });
+    const response = await axios.post<AuthTokensResponse>(
+      `${env.apiBaseUrl}/api/auth/refresh`,
+      { refreshToken },
+      {
+        headers: { 'Content-Type': 'application/json' },
+        timeout: 15000,
+      },
+    );
+    const tokens = response.data;
     state.setTokens(tokens);
     return tokens;
-  } catch (error) {
+  } catch {
     state.logout();
     return null;
   }
