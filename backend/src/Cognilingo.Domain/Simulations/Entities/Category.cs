@@ -7,9 +7,10 @@ public sealed class Category : BaseEntity, ITranslatable<CategoryTranslation>
     private readonly List<CategoryTranslation> _translations = new();
     public IReadOnlyCollection<CategoryTranslation> Translations => _translations;
 
-    public Category(string? icon = null)
+    public Category(string? icon = null, List<CategoryTranslation>? translations = null)
     {
         Icon = icon;
+        _translations = translations ?? new();
     }
 
     private Category()

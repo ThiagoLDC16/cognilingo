@@ -33,6 +33,8 @@ global using Cognilingo.Infrastructure.Identity.Authentication.Hashers;
 global using Cognilingo.Infrastructure.Identity.Context;
 global using Cognilingo.Infrastructure.Identity.Options;
 global using Microsoft.AspNetCore.Http;
+global using Cognilingo.Infrastructure.Seeding;
+global using Cognilingo.Infrastructure.Seeding.Extensions;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.ChangeTracking;
 global using Microsoft.EntityFrameworkCore.Diagnostics;

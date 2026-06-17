@@ -7,9 +7,10 @@ public sealed class Situation : BaseEntity, ITranslatable<SituationTranslation>
     private readonly List<SituationTranslation> _translations = new();
     public IReadOnlyCollection<SituationTranslation> Translations => _translations;
 
-    public Situation(Guid categoryId)
+    public Situation(Guid categoryId, List<SituationTranslation>? translations = null)
     {
         CategoryId = categoryId;
+        _translations = translations ?? new();
     }
 
     private Situation()

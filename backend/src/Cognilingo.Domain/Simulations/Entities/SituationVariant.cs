@@ -14,12 +14,13 @@ public sealed class SituationVariant : BaseEntity, ITranslatable<SituationVarian
     private readonly List<SituationVariantObjective> _objectives = new();
     public IReadOnlyCollection<SituationVariantObjective> Objectives => _objectives;
 
-    public SituationVariant(Guid situationId, string learningLanguage, string promptInstructions, string initialMessage)
+    public SituationVariant(Guid situationId, string learningLanguage, string promptInstructions, string initialMessage, List<SituationVariantTranslation>? translations = null)
     {
         SituationId = situationId;
         LearningLanguage = learningLanguage;
         PromptInstructions = promptInstructions;
         InitialMessage = initialMessage;
+        _translations = translations ?? new();
     }
 
     private SituationVariant()
