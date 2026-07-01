@@ -42,7 +42,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao1Slug = "imigracao";
             migration.InsertSituation(situacao1Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Passando pela imigração", "O agente te chama. Coração acelera. Você tá pronto?")]
+                translations: [new("pt-BR", "Passando pela imigração", "Evite respostas vagas que podem gerar dúvidas e atrasar sua entrada no país.")]
             ));
 
             var situacao1Id = ContentId.From(situacao1Slug);
@@ -100,7 +100,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao2Slug = "checkin-aeroporto";
             migration.InsertSituation(situacao2Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Check-in e bagagem", "Excesso de bagagem, dúvidas no balcão — resolva tudo antes de embarcar.")]
+                translations: [new("pt-BR", "Check-in e bagagem", "Evite taxas inesperadas e confusão no embarque ao confirmar malas, assento e portão.")]
             ));
 
             var situacao2Id = ContentId.From(situacao2Slug);
@@ -141,7 +141,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao3Slug = "bordo";
             migration.InsertSituation(situacao3Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "A bordo do avião", "Refeição, cobertor, cadeira travada — peça o que você precisa sem travar.")]
+                translations: [new("pt-BR", "A bordo do avião", "Peça comida, bebida ou ajuda sem depender de gestos quando algo faltar no voo.")]
             ));
 
             var situacao3Id = ContentId.From(situacao3Slug);
@@ -177,7 +177,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao1Slug = "checkin-hotel";
             migration.InsertSituation(situacao1Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Check-in no hotel", "Chegou cansado da viagem. Quarto, chave e descanso — tão perto.")]
+                translations: [new("pt-BR", "Check-in no hotel", "Evite erro na reserva e entenda caução, quarto e horários antes de subir.")]
             ));
 
             var situacao1Id = ContentId.From(situacao1Slug);
@@ -220,7 +220,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao2Slug = "solicitacoes-hotel";
             migration.InsertSituation(situacao2Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Pedidos ao quarto", "Toalha, travesseiro, alguma coisa quebrou — a recepção é sua amiga.")]
+                translations: [new("pt-BR", "Pedidos ao quarto", "Resolva falta de itens ou problemas no quarto antes que atrapalhem sua estadia.")]
             ));
 
             var situacao2Id = ContentId.From(situacao2Slug);
@@ -245,7 +245,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao3Slug = "checkout-hotel";
             migration.InsertSituation(situacao3Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Check-out e conta final", "Hora de ir embora — sem surpresas na fatura.")]
+                translations: [new("pt-BR", "Check-out e conta final", "Confira cobranças antes de pagar para não sair do hotel com valores indevidos.")]
             ));
 
             var situacao3Id = ContentId.From(situacao3Slug);
@@ -281,7 +281,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao1Slug = "fastfood";
             migration.InsertSituation(situacao1Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Pedindo no fast food", "Fila andando, caixa te olhando — sem travar, você manda bem.")]
+                translations: [new("pt-BR", "Pedindo no fast food", "Faça pedidos e ajustes com clareza para evitar receber algo diferente do que queria.")]
             ));
 
             var situacao1Id = ContentId.From(situacao1Slug);
@@ -323,7 +323,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao2Slug = "restaurante";
             migration.InsertSituation(situacao2Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Jantar em restaurante", "Cardápio cheio de termos que você nunca viu. Vamos decifrar juntos.")]
+                translations: [new("pt-BR", "Jantar em restaurante", "Entenda o cardápio e a conta para pedir bem e evitar escolhas ou cobranças erradas.")]
             ));
 
             var situacao2Id = ContentId.From(situacao2Slug);
@@ -366,7 +366,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao3Slug = "cafe";
             migration.InsertSituation(situacao3Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Pedindo café e snacks", "Café, chá, croissant — peça o que você quer sem travar no balcão.")]
+                translations: [new("pt-BR", "Pedindo café e snacks", "Peça do seu jeito mesmo com fila, tamanhos e opções rápidas no balcão.")]
             ));
 
             var situacao3Id = ContentId.From(situacao3Slug);
@@ -402,7 +402,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao1Slug = "uber";
             migration.InsertSituation(situacao1Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Uber e transporte por app", "Motorista confirmando endereço, pedindo para esperar — tudo em inglês.")]
+                translations: [new("pt-BR", "Uber e transporte por app", "Confirme local e rota para evitar desencontros, cancelamentos ou viagem errada.")]
             ));
 
             var situacao1Id = ContentId.From(situacao1Slug);
@@ -444,7 +444,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao2Slug = "metro";
             migration.InsertSituation(situacao2Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Metrô e ônibus", "Comprar passagem, pegar a linha certa e não se perder — é mais fácil do que parece.")]
+                translations: [new("pt-BR", "Metrô e ônibus", "Compre a passagem certa e peça ajuda antes de pegar a linha ou o sentido errado.")]
             ));
 
             var situacao2Id = ContentId.From(situacao2Slug);
@@ -469,7 +469,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao3Slug = "aluguel-carro";
             migration.InsertSituation(situacao3Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Alugando um carro", "Seguro, tanque cheio ou vazio, GPS incluso — entenda o contrato antes de assinar.")]
+                translations: [new("pt-BR", "Alugando um carro", "Entenda seguro, caução e combustível antes de assinar algo que encareça a viagem.")]
             ));
 
             var situacao3Id = ContentId.From(situacao3Slug);
@@ -506,7 +506,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao1Slug = "loja-roupas";
             migration.InsertSituation(situacao1Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Loja de roupas", "Do tamanho certo ao desconto que você merece — compre com confiança.")]
+                translations: [new("pt-BR", "Loja de roupas", "Pergunte tamanho, prova e troca para não comprar errado ou perder o desconto.")]
             ));
 
             var situacao1Id = ContentId.From(situacao1Slug);
@@ -548,7 +548,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao2Slug = "outlet";
             migration.InsertSituation(situacao2Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Outlet e liquidação", "Sale, clearance, BOGO — descubra o que cada placa está dizendo.")]
+                translations: [new("pt-BR", "Outlet e liquidação", "Entenda promoções e cupons antes de pagar mais do que precisava.")]
             ));
 
             var situacao2Id = ContentId.From(situacao2Slug);
@@ -584,7 +584,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao1Slug = "farmacia";
             migration.InsertSituation(situacao1Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Na farmácia", "Dor de cabeça, febre, enjoo — descreva o que sente e saia com o remédio certo.")]
+                translations: [new("pt-BR", "Na farmácia", "Descreva sintomas e entenda a dosagem para não comprar o remédio errado.")]
             ));
 
             var situacao1Id = ContentId.From(situacao1Slug);
@@ -627,7 +627,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao2Slug = "pronto-socorro";
             migration.InsertSituation(situacao2Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Pronto-socorro", "Tornou o tornozelo, mal-estar sério — saiba o que falar quando mais importa.")]
+                translations: [new("pt-BR", "Pronto-socorro", "Explique sintomas, seguro e alergias quando um erro pode atrasar seu atendimento.")]
             ));
 
             var situacao2Id = ContentId.From(situacao2Slug);
@@ -653,7 +653,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao3Slug = "policia";
             migration.InsertSituation(situacao3Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Abordagem policial ou ocorrência", "Calma, educação e as palavras certas — saber se comunicar faz toda diferença.")]
+                translations: [new("pt-BR", "Abordagem policial ou ocorrência", "Registre o ocorrido com dados claros para evitar problemas com seguro ou documentos.")]
             ));
 
             var situacao3Id = ContentId.From(situacao3Slug);
@@ -678,7 +678,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao4Slug = "cartao-bloqueado";
             migration.InsertSituation(situacao4Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Cartão bloqueado ou problema bancário", "Compra recusada no exterior — resolva sem entrar em pânico.")]
+                translations: [new("pt-BR", "Cartão bloqueado ou problema bancário", "Resolva bloqueios e verificações antes que uma compra recusada vire um problema maior.")]
             ));
 
             var situacao4Id = ContentId.From(situacao4Slug);
@@ -714,7 +714,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao1Slug = "ingressos";
             migration.InsertSituation(situacao1Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Comprando ingressos", "Parque, museu, show — entre sem complicação.")]
+                translations: [new("pt-BR", "Comprando ingressos", "Compre o ingresso certo e entenda regras antes de perder horário, desconto ou entrada.")]
             ));
 
             var situacao1Id = ContentId.From(situacao1Slug);
@@ -755,7 +755,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao2Slug = "pedindo-direcoes";
             migration.InsertSituation(situacao2Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Pedindo direções na rua", "O GPS travou. Um transeunte pode te ajudar — se você souber o que perguntar.")]
+                translations: [new("pt-BR", "Pedindo direções na rua", "Peça e confirme o caminho para não depender só do GPS quando ele falhar.")]
             ));
 
             var situacao2Id = ContentId.From(situacao2Slug);
@@ -791,7 +791,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao1Slug = "smalltalk";
             migration.InsertSituation(situacao1Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Small talk com nativos", "Eles puxam conversa sem avisar — aprenda a responder sem travar.")]
+                translations: [new("pt-BR", "Small talk com nativos", "Responda conversas casuais sem parecer ríspido ou encerrar a interação sem querer.")]
             ));
 
             var situacao1Id = ContentId.From(situacao1Slug);
@@ -832,7 +832,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao2Slug = "pedir-repetir";
             migration.InsertSituation(situacao2Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Não entendi — pede pra repetir", "A habilidade que ninguém ensina mas todo mundo precisa usar.")]
+                translations: [new("pt-BR", "Não entendi — pede pra repetir", "Peça repetição do jeito certo para não seguir instruções que você não entendeu.")]
             ));
 
             var situacao2Id = ContentId.From(situacao2Slug);
@@ -857,7 +857,7 @@ namespace Cognilingo.Infrastructure.Migrations
             const string situacao3Slug = "foto";
             migration.InsertSituation(situacao3Slug, new Situation(
                 categoryId: categoryId,
-                translations: [new("pt-BR", "Pedindo foto ou tirando foto para alguém", "Simples, mas travar aqui é constrangedor. Bora praticar.")]
+                translations: [new("pt-BR", "Pedindo foto ou tirando foto para alguém", "Peça ajuda ou oriente a foto sem criar uma situação desconfortável com desconhecidos.")]
             ));
 
             var situacao3Id = ContentId.From(situacao3Slug);
